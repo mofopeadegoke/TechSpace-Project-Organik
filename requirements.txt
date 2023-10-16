@@ -1,0 +1,4 @@
+flask
+couchbase
+flask_cors
+bcrypt
