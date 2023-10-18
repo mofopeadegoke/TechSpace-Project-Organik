@@ -1,9 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-* {
-    font-family: 'Roboto', sans-serif;
+:root {
+    --primary-green: #00B207;
 }
 nav.navbar {
     padding: 4rem 1.5rem;
+}
+nav.navbar .logo {
+    margin-right: 5px;
 }
 nav.navbar a {
     text-decoration: none;
@@ -24,7 +26,7 @@ nav.navbar ul {
     list-style: none;
 }
 .logo-txt {
-    color: #00B207;
+    color: var(--primary-green);
     font-family: Roboto;
     font-size: 38px;
     font-weight: 700;
@@ -55,6 +57,7 @@ nav.navbar .cart-container {
     background-color: #FFF;
     border: 1px solid #E0E0E0;
     padding: 5px;
+    padding-right: 0.8rem;
     gap: 10px;
     flex-direction: row;
 }
@@ -64,4 +67,10 @@ nav.navbar .cart-container span {
 nav.navbar button {
     border-radius: 33px;
     border: none;
+    background-color: var(--primary-green);
+    padding: 1rem 1.5rem;
+    color: #FFF;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 130%;
 }

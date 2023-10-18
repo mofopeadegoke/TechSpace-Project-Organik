@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yellowtail&display=swap');
+:root {
+    --primary-green: #00B207;
+}
+* {
+    font-family: Poppins, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.homePage-main .section-one {
+    height: 40rem;
+    background-image: url(../assests/home-background-one.jpg);
+    background-size: cover;
+    background-position: center center;
+}
+.homePage-main .curvy-text {
+    font-family: 'Yellowtail', cursive;
+    font-size: 2rem;
+}
+.homePage-main .green-text {
+    color: var(--primary-green);
+}
+.homePage-main .section-one {
+    position: relative;
+}
+.homePage-main .section-one .content {
+    position: absolute;
+    inset: 0;
+    top: 13rem;
+    left: 7rem;
+}
+.homePage-main .section-one .content p {
+    margin-block: 0;
+}
+.homePage-main .section-one .content h1 {
+    font-size: 2.5rem;
+    margin-block: 0;
+    width: 30rem;
+    margin-bottom: 1.5rem;
+}

@@ -1,0 +1,17 @@
+:root {
+    --primary-green: #00B207;
+}
+button.primary-btn {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    font-size: 20px;
+    color: #FFF;
+    border-radius: 16px;
+    background: var(--primary-green, #00B207);
+    border: none;
+}
+button.primary-btn img {
+    width: 1rem;
+}

@@ -9,7 +9,7 @@ export default function Navbar() {
                 <ul>
                     <li>
                         <a href="#">
-                            <img src={Logo} alt="The organization's logo which is a leaf" />
+                            <img src={Logo} alt="The organization's logo which is a leaf" className="logo"/>
                             <span className="logo-txt">
                                 Organick
                             </span>
