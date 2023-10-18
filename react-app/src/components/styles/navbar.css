@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+* {
+    font-family: 'Roboto', sans-serif;
+}
+nav.navbar {
+    padding: 4rem 1.5rem;
+}
+nav.navbar a {
+    text-decoration: none;
+    color: #000;
+    font-size: 1.3rem;
+}
+nav.navbar ul, nav.navbar .nav-left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+nav.navbar img {
+    width: 2rem;
+    vertical-align: middle;
+}
+nav.navbar ul {
+    list-style: none;
+}
+.logo-txt {
+    color: #00B207;
+    font-family: Roboto;
+    font-size: 38px;
+    font-weight: 700;
+    vertical-align: middle;
+}
+nav.navbar .nav-left {
+    gap: 2rem;
+}
+nav.navbar .search-container, nav.navbar .cart-container {
+    display: inline-flex;
+    flex-direction: row-reverse;
+    border-radius: 40px;
+    padding: 0.5rem;
+    border: 1px solid #FAFAFA;
+    background-color: #FAFAFA;
+    justify-content: space-between;
+    gap: 5px;
+}
+nav.navbar .search-container input {
+    border: none;
+    border-radius: 40px;
+    padding-left: 1rem;
+}
+nav.navbar .cart-container span {
+    align-self: center;
+}
+nav.navbar .cart-container {
+    background-color: #FFF;
+    border: 1px solid #E0E0E0;
+    padding: 5px;
+    gap: 10px;
+    flex-direction: row;
+}
+nav.navbar .cart-container span {
+    margin-right: 5px;
+}
+nav.navbar button {
+    border-radius: 33px;
+    border: none;
+}

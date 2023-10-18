@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navbar from "./components/navbar";
+import Footer from "./components/footer";
+import HomePage from "./pages/home";
 import axios from "axios";
 
 function App() {
@@ -16,10 +20,15 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <h1>Data from Flask:</h1>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
-    </div>
+    <>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route index element={<HomePage />}></Route>
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </>
   );
 }
 
