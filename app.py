@@ -117,7 +117,7 @@ def search_products():
         search_query = request.args.get('q', default='', type=str)
 
         # Build a N1QL query to search for products matching the search query
-        query = f"SELECT * FROM `default`:`Farm_eCommerce`.`Products`.`ProductsCollections`WHERE (LOWER(name) LIKE LOWER('%{search_query}%'))"
+        query = f"SELECT * FROM `default`:`Farm_eCommerce`.`Products`.`ProductsCollections`WHERE (LOWER(name) LIKE LOWER('%{search_query}%') OR LOWER(category) LIKE LOWER('%{search_query}%'))"
         
         # result = bucket.n1ql_query(N1QLQuery(query))
         result = cluster.query(query)
