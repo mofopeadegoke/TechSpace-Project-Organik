@@ -1,5 +1,5 @@
 # app.py
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, render_template, request, redirect
 from datetime import timedelta
 import traceback
 from couchbase.exceptions import CouchbaseException, DocumentExistsException, DocumentNotFoundException
@@ -46,7 +46,10 @@ def farmer_Signup():
     try:
         payload = request.json
         user = payload['username']
-        
+         # Check if the username is already registered
+        user_data = cb_user_coll.get(user, quiet=True)
+        if user_data:
+            return 'Username already taken', 400
         # create new random key
         # key = uuid.uuid4().__str__()
         user_document_key = user.lower()
@@ -67,6 +70,58 @@ def farmer_Signup():
     except Exception as e:
         return f"Unexpected error: {e}", 500
     
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    scope_name = "Users"
+    collection_name = "Seller_User"
+    cluster = Cluster(endpoint, options)
+
+	# Wait until the cluster is ready for use.
+    cluster.wait_until_ready(timedelta(seconds=5))
+	# Get a reference to our bucket
+    cb_user = cluster.bucket(bucket_name)
+	# Get a reference to our collection
+    cb_user_coll = cb_user.scope(scope_name).collection(collection_name)
+
+    if request.method == 'POST':
+        FirstName = request.form['firstname']
+        LastName = request.form['lastname']
+        CompanyName = request.form['companyname']
+        Phone = request.form['phone']
+        Zipcode = request.form['zipcode']
+        Country = request.form['country']
+        Email = request.form['email']
+        password = request.form['password']
+
+        # Check if the username is already registered
+        user_data = cb_user_coll.get(Email, quiet=True)
+        if user_data:
+            return 'Username already taken', 400
+        
+        # Create a new user document in Couchbase
+        user_data = {
+            'firstname': FirstName,
+            'lastname': LastName,
+            'comapanyname': CompanyName,
+            'phone': Phone,
+            'zipcode': Zipcode,
+            'country': Country,
+            'email': Email,
+            'password': password  
+        }
+
+        salt = bcrypt.gensalt()
+        hashed = bcrypt.hashpw(user_data["password"].encode('utf-8'), salt)
+        base64_hashed = base64.b64encode(hashed).decode('utf-8')
+        user_data['password'] = base64_hashed
+
+        # Insert User Registration data to the database
+        cb_user_coll.insert(Email, user_data)
+
+        # return redirect(url_for('login'))
+
+    return render_template('register.html')
 
 
 @app.route('/api/list_all_products', methods=['GET'])
@@ -101,7 +156,9 @@ def search_products():
     """
     Function or the route to search for a specific product. it allows a GET
     request from the user and then queries the database which response is a 
-    json value of the products with the search description. 
+    json value of the products with the product name and category search key.
+
+    get request sent as q=product_name. 
 
     """
     try:
