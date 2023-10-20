@@ -4,6 +4,7 @@ import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import HomePage from "./pages/home";
 import axios from "axios";
+import AboutPage from "./pages/about";
 
 function App() {
   const [data, setData] = useState({});
@@ -24,7 +25,7 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route index element={<HomePage />}></Route>
+          <Route index element={<AboutPage />}></Route>
         </Routes>
         <Footer />
       </BrowserRouter>

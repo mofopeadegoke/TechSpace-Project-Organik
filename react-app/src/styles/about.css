@@ -13,19 +13,19 @@
     display: flex;
     align-items: center;
     gap: 0.625rem;
-    margin-bottom: 1.25rem;
+    margin-bottom: 3.25rem;
 }
 
-.aboutPage-main .section-three-above .icon-text-container {
+.aboutPage-main .about-section-three-above .icon-text-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.625rem;
-    margin-bottom: 1.25rem;
+    margin-bottom: 3rem;
 }
 
-.aboutPage-main .section-two,
-.section-three-above {
+.aboutPage-main .about-section-two,
+.about-section-three-above {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -34,11 +34,11 @@
     padding: 8rem 0;
 }
 
-.aboutPage-main .section-three-above {
+.aboutPage-main .about-section-three-above {
     padding-bottom: 0;
 }
 
-.aboutPage-main .section-two .contentLeft {
+.aboutPage-main .about-section-two .contentLeft {
     /* width: 45%; */
     display: flex;
     justify-content: center;
@@ -47,7 +47,7 @@
 
 
 
-.aboutPage-main .section-three{
+.aboutPage-main .about-section-three{
     background-color: #F9F8F8;
 }
 
@@ -61,7 +61,7 @@
 }
 
 .aboutPage-main .about-title-text {
-    margin: 0;
+    margin-bottom: 1.56rem;
     font-size: 3.125rem; 
     font-weight: 900;
     font-family: 'roboto', sans-serif;
@@ -74,16 +74,17 @@
     font-family: Open Sans;
     font-style: normal;
     font-weight: 400;
-    width: 35.625rem; 
+    width: 35.625rem;
+    margin-bottom: 2.5rem;
 }
 
-.aboutPage-main .section-three .about-image2{
+.aboutPage-main .about-section-three .about-image2{
     width: 38rem;
     height: 32rem;
     border-radius: 1.875rem;
 }
 
-.aboutPage-main .section-three-below {
+.aboutPage-main .about-section-three-below {
     display: flex;
     justify-content: center;
     align-items: center;
