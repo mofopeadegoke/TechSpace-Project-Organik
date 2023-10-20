@@ -6,6 +6,8 @@ import HomePage from "./pages/home";
 import axios from "axios";
 import AboutPage from "./pages/about";
 import ShopPage from "./pages/shop";
+import LogIn from "./pages/log-in";
+import SignUp from "./pages/sign-up";
 
 function App() {
   const [data, setData] = useState({});
@@ -29,6 +31,8 @@ function App() {
           <Route index element={<HomePage />}></Route>
           <Route path="/about" element={<AboutPage />}></Route>
           <Route path="/shop" element={<ShopPage />}></Route>
+          <Route path="/logIn" element={<LogIn />}></Route>
+          <Route path="/signUp" element={<SignUp />}></Route>
           <Route path="*" element={<HomePage />} />
         </Routes>
         <Footer />

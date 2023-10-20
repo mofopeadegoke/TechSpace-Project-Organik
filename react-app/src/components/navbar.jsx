@@ -51,9 +51,9 @@ export default function Navbar() {
                             </div>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="/logIn">
                                 <button className="signIn-btn">
-                                    Sign In
+                                    Log In
                                 </button>
                             </a>
                         </li>
