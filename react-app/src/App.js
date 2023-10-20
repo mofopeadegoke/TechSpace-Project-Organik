@@ -5,6 +5,7 @@ import Footer from "./components/footer";
 import HomePage from "./pages/home";
 import axios from "axios";
 import AboutPage from "./pages/about";
+import ShopPage from "./pages/shop";
 
 function App() {
   const [data, setData] = useState({});
@@ -27,6 +28,7 @@ function App() {
         <Routes>
           <Route index element={<HomePage />}></Route>
           <Route path="/about" element={<AboutPage />}></Route>
+          <Route path="/shop" element={<ShopPage />}></Route>
           <Route path="*" element={<HomePage />} />
         </Routes>
         <Footer />
