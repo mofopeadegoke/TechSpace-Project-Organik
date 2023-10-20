@@ -4,13 +4,14 @@ import PrimaryColoredBtn from '../components/primary-colored-btn';
 import '../styles/sign-up.css';
 
 export default function SignUp() {
+    const [fullname, setFullName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     // const [showPassword, setShowPassword] = useState(false);
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(`Email: ${email}, Password: ${password}`);
+        console.log(`Fullname: ${fullname}, Email: ${email}, Password: ${password}`);
     };
 
     // const togglePasswordVisibility = () => {
@@ -24,7 +25,7 @@ export default function SignUp() {
             <form onSubmit={handleSubmit}>
                 <label className='textfield'>
                     Full name
-                    <input className='input-field' type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <input className='input-field' type="text" value={fullname} onChange={(e) => setFullName(e.target.value)} />
                 </label>
                 <label className='textfield'>
                     Email address
