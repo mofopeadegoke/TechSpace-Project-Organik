@@ -13,9 +13,11 @@ import icon4 from '../assests/about-icon4.svg';
 import icon5 from '../assests/about-icon5.svg';
 import icon6 from '../assests/about-icon6.svg';
 import icon7 from '../assests/about-icon7.svg';
+import profile1 from '../assests/profile1.png';
 import IconText2 from '../components/icontext2';
 import IconText3 from '../components/icontext3';
 import Subscribe from '../components/subscribe';
+import ProfileCard from '../components/profile-card';
 
 export default function AboutPage() {
     return (
@@ -68,6 +70,42 @@ export default function AboutPage() {
                         <IconText3 imageUrl={icon7} text="Secured Payment" subtext="Simply dummy text of the printintypesetting industry." />
                     </article>
                 </article>
+                
+                <article className='about-section-four'>
+                    <p className="curvy-text green-text">
+                        Team</p>
+                    <h1 className='about-title-text'>Our Organic Experts</h1>
+                    <p className='about-discription'>Simply dummy text of the printing and typesetting industry. Lorem had ceased to been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley.
+                        </p>
+                        <article className='profile-card-container'>
+                        <ProfileCard 
+                        imageUrl={profile1}
+                        altText='profile image'
+                        name='John Doe'
+                        designation='CEO'
+                        instagramUrl='https://www.instagram.com/'
+                        twitterUrl='https://twitter.com/'
+                    />
+                    <ProfileCard 
+                        imageUrl={profile1}
+                        altText='profile image'
+                        name='John Doe'
+                        designation='CEO'
+                        instagramUrl='https://www.instagram.com/'
+                        twitterUrl='https://twitter.com/'
+                    />
+                    <ProfileCard 
+                        imageUrl={profile1}
+                        altText='profile image'
+                        name='John Doe'
+                        designation='CEO'
+                        instagramUrl='https://www.instagram.com/'
+                        twitterUrl='https://twitter.com/'
+                    />
+                        </article>
+                    
+                </article>
+                
                 <Subscribe />
             </article>
         </>

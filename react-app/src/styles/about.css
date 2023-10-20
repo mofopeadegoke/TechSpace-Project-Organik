@@ -91,3 +91,23 @@
     gap: 3.125rem;
     padding: 8rem 0;
 }
+
+.aboutPage-main .about-section-four {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10rem 0;
+}
+
+.aboutPage-main .about-section-four .about-discription {
+    width: 58rem;
+    text-align: center;
+}
+
+.aboutPage-main .profile-card-container {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
