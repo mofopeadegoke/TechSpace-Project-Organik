@@ -1,9 +1,46 @@
-article.footer {
+article.footerComponent {
     display: grid;
     grid-template-columns: 30% 40% 30%;
     grid-template-rows: auto;
     justify-content: center;
+    padding: 3rem 7rem;
+    color: #525C60;
 }
-article.footer img {
+article.footerComponent img {
     width: 3.5rem;
+    margin-right: 10px;
+}
+article.footerComponent :is(h3, h4) {
+    color: #274C5B;
+}
+article.footerComponent h3 {
+    font-size: 1.5rem;
+}
+article.footerComponent article.contact-content {
+    text-align: right;
+    padding-inline-end: 3rem;
+    padding-block-end: 2rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+}
+article.footerComponent article.company-text {
+    text-align: center;
+    padding-inline: 3rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+    border-left: 1px solid #D4D4D4;
+    border-right: 1px solid #D4D4D4;
+
+}
+article.footerComponent a {
+    text-decoration: none;
+    color: #525C60;
+}
+article.footerComponent article.quick-links {
+    padding-inline-start: 3rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
 }

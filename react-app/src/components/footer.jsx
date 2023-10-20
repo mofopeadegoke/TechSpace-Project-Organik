@@ -5,7 +5,7 @@ import TwitterIcon from "../assests/twitter-icon.png";
 export default function Footer() {
     return (
         <>
-            <article className="footer">
+            <article className="footerComponent">
                 <article className="contact-content">
                     <h3>Contact</h3>
                     <div className="email-contact">
