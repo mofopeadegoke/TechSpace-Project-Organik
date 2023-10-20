@@ -17,17 +17,17 @@ export default function Navbar() {
                     </li>
                     <div className="nav-left">
                         <li>
-                            <a href="\home">
+                            <a href="/home">
                                 Home
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="/shop">
                                 Shop
                             </a>
                         </li>
                         <li>
-                            <a href="\about">
+                            <a href="/about">
                                 About Us
                             </a>
                         </li>
