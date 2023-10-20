@@ -12,6 +12,7 @@ import icon3 from '../assests/about-icon3.svg';
 import icon4 from '../assests/about-icon4.svg';
 import icon5 from '../assests/about-icon5.svg';
 import icon6 from '../assests/about-icon6.svg';
+import icon7 from '../assests/about-icon7.svg';
 import IconText2 from '../components/icontext2';
 import IconText3 from '../components/icontext3';
 import Subscribe from '../components/subscribe';
@@ -21,10 +22,10 @@ export default function AboutPage() {
         <>
             <article className='aboutPage-main'>
                 <TitleImage text='About Us' imageUrl={titlebg} />
-                <article className='section-one'>
+                <article className='about-section-one'>
 
                 </article>
-                <article className='section-two'>
+                <article className='about-section-two'>
                     <article className='contentLeft'>
                         <img className='about-image' src={about1} alt='tomatos in a blow' />
                     </article>
@@ -43,8 +44,8 @@ export default function AboutPage() {
                     </article>
                 </article>
 
-                <article className='section-three'>
-                    <article className='section-three-above'>
+                <article className='about-section-three'>
+                    <article className='about-section-three-above'>
                     <article className='contentLeft'>
                         <p className="curvy-text green-text">
                             Why Choose us?
@@ -60,11 +61,11 @@ export default function AboutPage() {
                         <img className='about-image2' src={about2} alt='tomatos in a blow' />
                     </article>
                     </article>
-                    <article className='section-three-below'>
-                        <IconText3 imageUrl={icon5} text="Return Policy" subtext="Simply dummy text of the printintypesetting industry." />
-                        <IconText3 imageUrl={icon6} text="100% Fresh" subtext="Simply dummy text of the printintypesetting industry." />
-                        <IconText3 imageUrl={icon6} text="Support 24/7" subtext="Simply dummy text of the printintypesetting industry." />
-                        <IconText3 imageUrl={icon4} text="Secured Payment" subtext="Simply dummy text of the printintypesetting industry." />
+                    <article className='about-section-three-below'>
+                        <IconText3 imageUrl={icon6} text="Return Policy" subtext="Simply dummy text of the printintypesetting industry." />
+                        <IconText3 imageUrl={icon5} text="100% Fresh" subtext="Simply dummy text of the printintypesetting industry." />
+                        <IconText3 imageUrl={icon4} text="Support 24/7" subtext="Simply dummy text of the printintypesetting industry." />
+                        <IconText3 imageUrl={icon7} text="Secured Payment" subtext="Simply dummy text of the printintypesetting industry." />
                     </article>
                 </article>
                 <Subscribe />

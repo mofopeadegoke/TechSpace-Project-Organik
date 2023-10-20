@@ -12,6 +12,9 @@
   
   .image-container img {
     max-width: 100%;
+    border-radius: 1.125rem;
+    background: #F9F8F8;
+    padding: 1.3rem;
   }
   
   .image-title-subtext .title {
