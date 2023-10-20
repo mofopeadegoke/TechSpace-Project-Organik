@@ -13,5 +13,6 @@ button.primary-btn {
     border: none;
 }
 button.primary-btn img {
+    margin-left: 0.3rem;
     width: 1rem;
 }

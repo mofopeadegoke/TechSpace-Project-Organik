@@ -1,0 +1,92 @@
+.aboutPage-main .about-image {
+    height: 35.75rem; 
+}
+
+.aboutPage-main .title-text {
+    font-size: 3.125rem; 
+    font-weight: 900;
+    color: var(--title-color);
+    margin-bottom: 1.25rem;
+}
+
+.aboutPage-main .icon-text-container {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    margin-bottom: 1.25rem;
+}
+
+.aboutPage-main .section-three-above .icon-text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.625rem;
+    margin-bottom: 1.25rem;
+}
+
+.aboutPage-main .section-two,
+.section-three-above {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 3.125rem;
+    padding: 8rem 0;
+}
+
+.aboutPage-main .section-three-above {
+    padding-bottom: 0;
+}
+
+.aboutPage-main .section-two .contentLeft {
+    /* width: 45%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.aboutPage-main .section-three{
+    background-color: #F9F8F8;
+}
+
+.aboutPage-main .curvy-text {
+    font-family: 'Yellowtail', cursive;
+    font-size: 2rem;
+    margin-bottom: 0.0375rem;
+}
+.aboutPage-main .green-text {
+    color: var(--primary-green);
+}
+
+.aboutPage-main .about-title-text {
+    margin: 0;
+    font-size: 3.125rem; 
+    font-weight: 900;
+    font-family: 'roboto', sans-serif;
+    color: var(--title-color);
+}
+
+.aboutPage-main .about-discription {
+    color: #525C60;
+    font-size: 1.125rem; 
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: 400;
+    width: 35.625rem; 
+}
+
+.aboutPage-main .section-three .about-image2{
+    width: 38rem;
+    height: 32rem;
+    border-radius: 1.875rem;
+}
+
+.aboutPage-main .section-three-below {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3.125rem;
+    padding: 8rem 0;
+}
