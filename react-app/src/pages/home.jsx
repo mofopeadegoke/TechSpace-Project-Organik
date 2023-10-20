@@ -9,6 +9,7 @@ import brocolliImg from "../assests/brocolli.png"
 import cucumberImg from "../assests/cucumber.png"
 import onionImg from "../assests/onion.png"
 import cutOnionImg from "../assests/cutOnion.png"
+import Subscribe from "../components/subscribe";
 export default function HomePage() {
     console.log("★")
     return (
@@ -86,6 +87,9 @@ export default function HomePage() {
                         <SingleProduct category="Vegetable" imgUrl={onionImg} altText="An image of onions" price="$17.00" name="Onion"/>
                         <SingleProduct category="Vegetable" imgUrl={cutOnionImg} altText="An image of cut open cabbage" price="$17.00" name="Caggage"/>
                     </article>
+                </article>
+                <article className="section-five">
+                    <Subscribe />
                 </article>
             </article>
         </>

@@ -1,0 +1,9 @@
+article.footer {
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+    grid-template-rows: auto;
+    justify-content: center;
+}
+article.footer img {
+    width: 3.5rem;
+}

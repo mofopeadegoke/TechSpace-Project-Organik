@@ -8,7 +8,7 @@ export default function Navbar() {
             <nav className="navbar">
                 <ul>
                     <li>
-                        <a href="#">
+                        <a href="\home">
                             <img src={Logo} alt="The organization's logo which is a leaf" className="logo"/>
                             <span className="logo-txt">
                                 Organick
@@ -17,7 +17,7 @@ export default function Navbar() {
                     </li>
                     <div className="nav-left">
                         <li>
-                            <a href="#">
+                            <a href="\home">
                                 Home
                             </a>
                         </li>
@@ -27,7 +27,7 @@ export default function Navbar() {
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="\about">
                                 About Us
                             </a>
                         </li>
