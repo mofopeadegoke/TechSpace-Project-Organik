@@ -1,0 +1,12 @@
+.rating {
+    font-size: 24px;
+}
+
+.rating span {
+    cursor: pointer;
+    padding: 5px;
+}
+
+.rating{
+    color: #FFA858;
+}

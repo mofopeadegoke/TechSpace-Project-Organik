@@ -2,9 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Yellowtail&display=swap');
 :root {
     --primary-green: #00B207;
+    --secondary-blue: #274C5B;
 }
 * {
     font-family: Poppins, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 0;
 }
 
 .homePage-main .section-one {
@@ -37,4 +39,109 @@
     margin-block: 0;
     width: 30rem;
     margin-bottom: 1.5rem;
+}
+article.img-card {
+    height:15rem;
+    background-size: cover;
+    background-position: center center;
+    width: 50rem;
+    padding: 4rem 2rem;
+    color: #FFF;
+    border-radius: 20px;
+}
+article.img-card.one {
+    background-image: url(../assests/home-section-two-cardImg-one.jpg);
+}
+article.img-card.two {
+    background-image: url(../assests/home-section-two-cardImg-two.jpg);
+}
+article.img-card.two h2 {
+    color: var(--secondary-blue);
+}
+article.img-card.two p {
+    color: #7EB693;
+}
+article.section-two {
+    padding: 8rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 2rem;
+}
+article.section-three {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: rgb(254, 207, 215);
+    justify-content: space-between;
+    column-gap: 2rem;
+    padding: 8rem 4rem;
+    margin-bottom: 8rem;
+}
+article.section-three > img {
+    width: 40rem;
+}
+article.section-three .content img {
+    width: 3rem;
+}
+article.section-three .content .img-container {
+    background-color: #FFF;
+    padding: 10px 15px;
+    display: inline-block;
+    border-radius: 20px;
+}
+article.section-three .content :is(h2, h3) {
+    color: #274C5B;
+    font-weight: 800;
+}
+article.section-three .content {
+    color: #525C60;
+}
+article.section-three .content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+article.section-three .content h2 {
+    font-size: 2.5rem;
+}
+article.section-three .content .row {
+    margin-top: 2rem;
+}
+article.section-three .content .row > * {
+    margin-bottom: 1rem;
+}
+article.section-three .content button.primary-btn {
+    margin-top: 1rem;
+}
+article.section-four {
+    background: #274C5B;
+    padding: 10rem 7rem;
+}
+article.section-four .curvy-text {
+    color: #7EB693;
+}
+article.section-four .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+article.section-four .row p.title-text {
+    color: #FFF;
+    font-size: 35px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+article.section-four .row .primary-btn {
+    color: #274C5B;
+    background: #EFD372;
+    font-weight: 600;
+}
+article.section-four article.products {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    column-gap: 1rem;
 }
