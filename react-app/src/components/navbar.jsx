@@ -1,7 +1,7 @@
 import "./styles/navbar.css"
-import CartIcon from "../assests/Cart Icon.png";
-import Logo from "../assests/Logo.png";
-import SearchIcon from "../assests/Search Icon.png";
+import CartIcon from "../assets/Cart Icon.png";
+import Logo from "../assets/Logo.png";
+import SearchIcon from "../assets/Search Icon.png";
 export default function Navbar() {
     return (
         <>

@@ -1,6 +1,6 @@
 import './styles/profile-card.css';
-import instagramIcon from '../assests/insta-icon.png';
-import twitterIcon from '../assests/twitter-icon.png';
+import instagramIcon from '../assets/insta-icon.png';
+import twitterIcon from '../assets/twitter-icon.png';
 
 export default function ProfileCard(props) {
     return (
