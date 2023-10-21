@@ -33,14 +33,9 @@ export default function Navbar() {
                         </li>
                         <li>
                             <a href="#">
-                                Services
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
                                 <div className="search-container">
                                     <img src={SearchIcon} alt="Magnifying glasses in a green background" />
-                                    <input type="text" placeholder="News" />
+                                    <input type="text" placeholder="Search Product" />
                                 </div>
                             </a>
                         </li>
