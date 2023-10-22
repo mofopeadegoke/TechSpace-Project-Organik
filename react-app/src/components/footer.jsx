@@ -1,7 +1,7 @@
 import "./styles/footer.css";
-import InstagramIcon from "../assests/insta-icon.png";
-import FacebookIcon from "../assests/facebook-icon.png";
-import TwitterIcon from "../assests/twitter-icon.png";
+import InstagramIcon from "../assets/insta-icon.png";
+import FacebookIcon from "../assets/facebook-icon.png";
+import TwitterIcon from "../assets/twitter-icon.png";
 export default function Footer() {
     return (
         <>

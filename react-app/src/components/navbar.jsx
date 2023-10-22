@@ -1,7 +1,7 @@
 import "./styles/navbar.css"
-import CartIcon from "../assests/Cart Icon.png";
-import Logo from "../assests/Logo.png";
-import SearchIcon from "../assests/Search Icon.png";
+import CartIcon from "../assets/Cart Icon.png";
+import Logo from "../assets/Logo.png";
+import SearchIcon from "../assets/Search Icon.png";
 export default function Navbar() {
     return (
         <>
@@ -33,14 +33,9 @@ export default function Navbar() {
                         </li>
                         <li>
                             <a href="#">
-                                Services
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
                                 <div className="search-container">
                                     <img src={SearchIcon} alt="Magnifying glasses in a green background" />
-                                    <input type="text" placeholder="News" />
+                                    <input type="text" placeholder="Search Product" />
                                 </div>
                             </a>
                         </li>

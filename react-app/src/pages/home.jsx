@@ -2,16 +2,15 @@ import "../styles/home.css";
 import PrimaryColoredBtn from "../components/primary-colored-btn";
 import PrimaryColoredDarkBtn from "../components/primary-colored-dark-btn";
 import SingleProduct from "../components/single-product";
-import Basket from "../assests/basket.png";
-import FoodBowl from "../assests/vegan.png";
-import MailBox from "../assests/mailbox.png";
-import brocolliImg from "../assests/brocolli.png"
-import cucumberImg from "../assests/cucumber.png"
-import onionImg from "../assests/onion.png"
-import cutOnionImg from "../assests/cutOnion.png"
+import Basket from "../assets/basket.png";
+import FoodBowl from "../assets/vegan.png";
+import MailBox from "../assets/mailbox.png";
+import brocolliImg from "../assets/brocolli.png"
+import cucumberImg from "../assets/cucumber.png"
+import onionImg from "../assets/onion.png"
+import cutOnionImg from "../assets/cutOnion.png"
 import Subscribe from "../components/subscribe";
 export default function HomePage() {
-    console.log("★")
     return (
         <>
             <article className="homePage-main">
