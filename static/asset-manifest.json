@@ -1,0 +1,36 @@
+{
+  "files": {
+    "main.css": "/static/css/main.8797b1c8.css",
+    "main.js": "/static/js/main.223cb171.js",
+    "static/js/787.b701888c.chunk.js": "/static/js/787.b701888c.chunk.js",
+    "static/media/newsletter-bg.png": "/static/media/newsletter-bg.70322d2c95f338f273d3.png",
+    "static/media/basket.png": "/static/media/basket.15ef3a08876416ad3c60.png",
+    "static/media/profile1.png": "/static/media/profile1.c5086bd8b884bff089cb.png",
+    "static/media/aboutbg.png": "/static/media/aboutbg.1dd4e56c98861814abca.png",
+    "static/media/about1.png": "/static/media/about1.f8e386556b0bbc7a7aa4.png",
+    "static/media/home-background-one.jpg": "/static/media/home-background-one.a214faeb32a9e0d6c85a.jpg",
+    "static/media/about2.png": "/static/media/about2.320dbf04ebaf1aa80362.png",
+    "static/media/home-section-two-cardImg-two.jpg": "/static/media/home-section-two-cardImg-two.3a15008c07c2aa2b6006.jpg",
+    "static/media/brocolli.png": "/static/media/brocolli.c56683e1b944d12bb38f.png",
+    "static/media/home-section-two-cardImg-one.jpg": "/static/media/home-section-two-cardImg-one.0747b0a339100a917f69.jpg",
+    "static/media/cutOnion.png": "/static/media/cutOnion.ff2ed196bd972ab11f0e.png",
+    "static/media/onion.png": "/static/media/onion.799ce129f0fa51de08d3.png",
+    "static/media/cucumber.png": "/static/media/cucumber.70f1f8e53326b76b7d58.png",
+    "static/media/vegan.png": "/static/media/vegan.f1ffc566aa07bf0bc095.png",
+    "static/media/about-icon1.svg": "/static/media/about-icon1.f72deb8167aa4c77068c0a8365146911.svg",
+    "static/media/about-icon5.svg": "/static/media/about-icon5.0e417c0e5bf38d0982ff4a0c5c2e0c7c.svg",
+    "static/media/about-icon4.svg": "/static/media/about-icon4.b0473dc2d3f4e16fe3f1fdad05859599.svg",
+    "static/media/about-icon6.svg": "/static/media/about-icon6.dabcf257346ac373c0629a98456f060e.svg",
+    "static/media/about-icon2.svg": "/static/media/about-icon2.08a247f896f336d4b4f63d3a7cbd93eb.svg",
+    "static/media/about-icon7.svg": "/static/media/about-icon7.880e648612b11ea0c47f54a9f0fd653c.svg",
+    "index.html": "/index.html",
+    "static/media/about-icon3.svg": "/static/media/about-icon3.31d0348177821150a2b17d1e1ffd8bb3.svg",
+    "main.8797b1c8.css.map": "/static/css/main.8797b1c8.css.map",
+    "main.223cb171.js.map": "/static/js/main.223cb171.js.map",
+    "787.b701888c.chunk.js.map": "/static/js/787.b701888c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8797b1c8.css",
+    "static/js/main.223cb171.js"
+  ]
+}
