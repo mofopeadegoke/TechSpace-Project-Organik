@@ -202,48 +202,64 @@ def logout():
 
 
 
-# @app.route('/api/list_all_products', methods=['GET'])
-# def list_all_products():
-#     try:
-#         User_scope_name = ""
-#         User_collection_name = "Seller_User"
-#         cluster = Cluster(endpoint, options)
-
-# 	    # Wait until the cluster is ready for use.
-#         cluster.wait_until_ready(timedelta(seconds=5))
-# 	    # Get a reference to our bucket
-#         bucket = cluster.bucket(bucket_name)
-#         # Build a N1QL query to select all documents in the "product" collection
-#         query = f"SELECT *  FROM `default`:`Farm_eCommerce`.`Products`.`ProductsCollections`"
+@app.route('/api/list_all_products', methods=['GET'])
+def list_all_products():
+    try:
+        cluster = Cluster(endpoint, options)
+        cluster.wait_until_ready(timedelta(seconds=5))
+        bucket = cluster.bucket(bucket_name)
+        query = f"SELECT *  FROM `default`:`Farm_eCommerce`.`Products`.`ProductsCollections`"
         
-#         # result = bucket.n1ql_query(N1QLQuery(query))
-#         result = cluster.query(query)
-#         print(result)
-#         products_document_keys = [row for row in result]
-#         return jsonify(products_document_keys)
-#         # Fetch the document data for each key
-#         products = [bucket.get(key).content for key in products_document_keys]
+        # result = bucket.n1ql_query(N1QLQuery(query))
+        result = cluster.query(query)
+        print(result)
+        products_document_keys = [row for row in result]
+        return jsonify(products_document_keys)
+        # Fetch the document data for each key
+        # products = [bucket.get(key).content for key in products_document_keys]
 
-#         return jsonify(products), 200
-#     except Exception as e:
-#         return f"Error: {str(e)}", 500
+        # return jsonify(products), 200
+    except Exception as e:
+        return f"Error: {str(e)}", 500
     
+@app.route('/api/all_products')
+def products():
+    cluster = Cluster(endpoint, options)
+    cluster.wait_until_ready(timedelta(seconds=5))
+    bucket = cluster.bucket(bucket_name)
 
-# @app.route('/api/access_products')
-# def access_products():
+    # all_products = []
+    query = f"SELECT products FROM Farm_eCommerce.Users.Seller_User WHERE "
+    query_result = cluster.query(query)
+    # Retrieve the products
+    # all_product = [row["products"] for row in query_result]
+    all_product = [row for row in query_result]
    
-# seller_id = "Seller-1"
+    # Use a list comprehension to filter out empty documents and extract products
+    products = [doc["products"] for doc in all_product if "products" in doc]
+   
+    return jsonify(products)
 
-# # Retrieve the seller's document
-# seller_doc = bucket.scope("Sellers").get(seller_id)
 
-# # Access seller attributes
-# seller_name = seller_doc.content['name']
-# seller_email = seller_doc.content['email']
-# other_seller_attributes = seller_doc.content['other_seller_attributes']
+@app.route('/api/seller_products')
+def seller_products():
+    cluster = Cluster(endpoint, options)
+    cluster.wait_until_ready(timedelta(seconds=2))
+	# Get a reference to our bucket
+    cb_user = cluster.bucket(bucket_name)
+    seller_id = "ejirobest@gmail.com"
+    # Get a reference to our bucket
+    cb_user = cluster.bucket(bucket_name)
+    # Retrieve the seller's document
+    seller_document = cb_user.scope("Users").collection("Seller_User")
 
-# # Access the list of products the seller is selling
-# products = seller_doc.content['products']
+
+    # Access the list of products the seller is selling
+    seller_doc = seller_document.get(seller_id, quiet = True)
+    Company = seller_doc.value['name']
+    products = seller_doc.value['products']
+
+    return jsonify(product = products)
 
 @app.route('/api/add_products', methods = ["POST"])
 def add_products():
@@ -256,21 +272,11 @@ def add_products():
     sellers = cb_user.scope("Users").collection("Seller_User")
     # user_data = cb_user_coll.get(email, quiet=True)
     new_product = request.json
-    print(new_product)
+    # print(new_product)
     # seller_id = payload['username']
     # Define the seller's unique identifier
-    seller_id = "gershonbest@gmail.com"  # Replace with the seller's actual ID
-
-    # Define the new product to add
-    # new_product = {
-    #     "product_id": "Orange123",  # Unique identifier for the new product (document ID)
-    #     "name": "Orange",
-    #     "description": "Fruit with the best Citric Acid.",
-    #     "category": "Fruit",
-    #     "price": 15.99,
-    #     "other_product_attributes": "Additional product information"
-    # }
-
+    seller_id = "ejirobest@gmail.com"  # Replace with the seller's actual ID
+    new_product["seller_id"] = seller_id
     try:
         # Retrieve the seller's document
         seller_doc = sellers.get(seller_id)
@@ -301,8 +307,6 @@ def search_products():
 
     """
     try:
-        User_scope_name = "Users"
-        User_collection_name = "Seller_User"
         cluster = Cluster(endpoint, options)
 
 	    # Wait until the cluster is ready for use.
