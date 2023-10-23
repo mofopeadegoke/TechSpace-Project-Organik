@@ -3,7 +3,7 @@ import Rating from "./rating"
 export default function SingleProduct(props) {
     return (
         <>
-            <article className="single-product">
+            <article className="single-product" id={props.uniqueId}>
                 <article className="category">
                     {props.category}
                 </article>
