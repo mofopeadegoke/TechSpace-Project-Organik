@@ -200,6 +200,14 @@ def login():
                 # return redirect(url_for('dashboard'))
             response_data = f"Wrong username or password"
             return jsonify(response_data)
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    response_data = f"Sucessfully logged out user"
+    # return redirect(url_for('login'))
+    return jsonify(response_data)
     
 
 @app.route('/dashboard')
