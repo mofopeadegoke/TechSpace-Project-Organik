@@ -8,6 +8,7 @@ import AboutPage from "./pages/about";
 import ShopPage from "./pages/shop";
 import LogIn from "./pages/log-in";
 import SignUp from "./pages/sign-up";
+import SingleCategory from "./pages/single-category";
 
 function App() {
   const [data, setData] = useState({});
@@ -33,6 +34,7 @@ function App() {
           <Route path="/shop" element={<ShopPage />}></Route>
           <Route path="/logIn" element={<LogIn />}></Route>
           <Route path="/signUp" element={<SignUp />}></Route>
+          <Route path="/singleCategory" element={<SingleCategory />}></Route>
           <Route path="*" element={<HomePage />} />
         </Routes>
         <Footer />
