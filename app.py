@@ -59,7 +59,6 @@ class CouchbaseClient:
             print(f"Error: {type(e)}{e}")
     def create_index_on_document(self):
         try:
-            # create index if it doesn't exist
             n1ql_query = f"CREATE INDEX ix_email ON `{self.bucket_name}`.{self.scope_name}.{self.collection_name}(email);"
             self._cluster.query(n1ql_query).execute()
             print("Index successfully created")
@@ -115,6 +114,22 @@ app = Flask(__name__)
 CORS(app, origins="http://localhost:3000")  
 app.secret_key = os.getenv("SECRET_KEY")
 login_manager.init_app(app)
+bcrypt = Bcrypt(app)
+
+load_dotenv()
+db_info = {
+    "host": os.getenv("DB_HOST"),
+    "bucket": os.getenv("BUCKET"),
+    "scope": os.getenv("SCOPE_USER"),
+    "collection": os.getenv("COLLECTION_USER_CLIENT"),
+    "username": os.getenv("USER"),
+    "password": os.getenv("PASSWORD"),
+}
+
+cb = CouchbaseClient(*db_info.values())
+cb.connect()
+cb.create_index()
+cb.create_index_on_document()
 
 class User(UserMixin):
     def __init__(self, id):
@@ -130,23 +145,8 @@ class User(UserMixin):
 
 @login_manager.user_loader
 def load_user(user_id):
-    cb = CouchbaseClient(*db_info.values())
-    cb.connect()
     foundUser = cb.load_user(user_id)
     return User(foundUser)
-
-load_dotenv()
-
-db_info = {
-    "host": os.getenv("DB_HOST"),
-    "bucket": os.getenv("BUCKET"),
-    "scope": os.getenv("SCOPE_USER"),
-    "collection": os.getenv("COLLECTION_USER_CLIENT"),
-    "username": os.getenv("USER"),
-    "password": os.getenv("PASSWORD"),
-}
-
-bcrypt = Bcrypt(app)
 
 @app.route('/register', methods=['POST'])
 def signup():
@@ -155,9 +155,6 @@ def signup():
         fullname = form_data.get('fullname')
         email = form_data.get('email')
         password = form_data.get('password')
-        cb = CouchbaseClient(*db_info.values())
-        cb.connect()
-        cb.create_index()
         if not cb.is_email_unique(email):
             response_data = "Email is already in use. Please choose another."
             return jsonify(response_data)
@@ -184,8 +181,6 @@ def login():
             form_data = request.json
             form_email = form_data.get('email')
             form_password = form_data.get('password')
-            cb = CouchbaseClient(*db_info.values())
-            cb.connect()
             result = cb.find_document(form_email)
             if result == []:
                 response_data = f"Couldn't find the email '{form_email}'"
