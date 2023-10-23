@@ -22,15 +22,6 @@ from flask_cors import CORS
 
 login_manager = LoginManager()
 
-current_time = datetime.datetime.now()
-hour = current_time.hour
-if 0 <= hour < 11:
-    greeting ="Good morning"
-elif 12 <= hour < 17:
-    greeting ="Good afternoon"
-else:
-    greeting ="Good evening"
-
 class CouchbaseClient:
     def __init__(self, host, bucket, scope, collection, username, password):
         self.host = host
