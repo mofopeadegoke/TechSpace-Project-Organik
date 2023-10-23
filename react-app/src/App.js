@@ -9,6 +9,7 @@ import ShopPage from "./pages/shop";
 import LogIn from "./pages/log-in";
 import SignUp from "./pages/sign-up";
 import SingleProductPage from "./pages/single-product-page";
+import SellerSignUp from "./pages/sellers-signup";
 
 function App() {
   const [data, setData] = useState({});
@@ -35,6 +36,7 @@ function App() {
           <Route path="/singleproduct" element={<SingleProductPage />}></Route>
           <Route path="/logIn" element={<LogIn />}></Route>
           <Route path="/signUp" element={<SignUp />}></Route>
+          <Route path="/sellerSignup" element={<SellerSignUp/>}></Route>
           <Route path="*" element={<HomePage />} />
         </Routes>
         <Footer />

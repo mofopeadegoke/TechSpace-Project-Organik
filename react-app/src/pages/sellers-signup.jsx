@@ -3,11 +3,15 @@ import axios from 'axios';
 import PrimaryColoredBtn from '../components/primary-colored-btn';
 import { useNavigate } from 'react-router-dom';
 import Notification from '../components/notification';
-import '../styles/sign-up.css';
+import '../styles/seller-signup.css';
 
-export default function SignUp() {
+export default function SellerSignUp() {
     const [formData, setFormData] = useState({
         fullname: '',
+        companyName: '',
+        phoneNumber: '',
+        country: '', 
+        zipcode: '', 
         email: '',
         password: ''
     });
@@ -39,9 +43,18 @@ export default function SignUp() {
             const response = await axios.post('http://127.0.0.1:5000/register', formData);
             console.log('Response from Flask:', response.data);
 
-            setFormData({ fullname: '', email: '', password: '' });
+            setFormData({
+                fullname: '',
+                companyName: '',
+                phoneNumber: '',
+                country: '',
+                zipcode: '',
+                email: '',
+                password: ''
+            });
+
             setError('');
-            setSuccess('Signup Successful! You can now log in.');
+            setSuccess('Sign up Successful! Redirecting to dashboard...');
             setTimeout(() => {
                 setSuccess('');
                 navigate('/shop');
@@ -49,7 +62,7 @@ export default function SignUp() {
 
         } catch (error) {
             console.error('Error:', error);
-            
+
             if (error.response && error.response.status === 409) {
                 setError('Email already exists. Please use a different email.');
             } else {
@@ -64,9 +77,8 @@ export default function SignUp() {
                 <article className='signup-container'>
                     <h1 className='header-text'>Sign up now</h1>
                     <form onSubmit={handleSubmit}>
-
                         <label className='textfield'>
-                            Full name
+                            Fullname
                             <input
                                 className='input-field'
                                 name='fullname'
@@ -77,10 +89,56 @@ export default function SignUp() {
                             />
                         </label>
 
-                        <br />
+                        <label className='textfield'>
+                            Company name 
+                            <input
+                                className='input-field'
+                                name='companyName'
+                                type="text"
+                                value={formData.companyName}
+                                onChange={handleInputChange}
+                                required
+                            />
+                        </label>
 
                         <label className='textfield'>
-                            Email address
+                            Phone number
+                            <input
+                                className='input-field'
+                                name='phoneNumber'
+                                type="text"
+                                value={formData.phoneNumber}
+                                onChange={handleInputChange}
+                                required
+                            />
+                        </label>
+
+                        <label className='textfield'>
+                            Country 
+                            <input
+                                className='input-field'
+                                name='country'
+                                type="text"
+                                value={formData.country}
+                                onChange={handleInputChange}
+                                required
+                            />
+                        </label>
+
+                        <label className='textfield'>
+                            Zipcode
+                            <input
+                                className='input-field'
+                                name='zipcode'
+                                type="text"
+                                value={formData.zipcode}
+                                onChange={handleInputChange}
+                                required
+                            />
+                        </label>
+
+                        <label className='textfield'>
+                            Email
                             <input
                                 className='input-field'
                                 name='email'
@@ -90,8 +148,6 @@ export default function SignUp() {
                                 required
                             />
                         </label>
-
-                        <br />
 
                         <label className='textfield'>
                             Password
@@ -108,9 +164,11 @@ export default function SignUp() {
                         <br />
                         <p className='sub-text'>By creating an account, I agree to our <a href='/home'>Terms of use</a> and <a href='/home'>Terms of use</a></p>
                         <PrimaryColoredBtn type="submit" value='Sign up' />
-                        
                     </form>
-                    <article className='bottom-section'><p className='bottom-text'>Already have an account?<a className='forgot-password' href='/logIn'>Log in</a></p><a href='/sellerSignup' className='sign-up-header'>Sign up as seller</a></article>
+                    <article className='bottom-section'>
+                        <p className='bottom-text'>Already have an account?<a className='forgot-password' href='/logIn'>Log in</a></p>
+                    
+                    </article>
                 </article>
                 {success && (<Notification message={success} onClose={() => setSuccess('')} />)}
             </article>
