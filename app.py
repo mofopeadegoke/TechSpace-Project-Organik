@@ -190,8 +190,9 @@ def signup():
 @app.route('/login', methods=['POST'])
 def login():
     if request.method == 'POST':
-            form_email = request.form['email']
-            form_password = request.form['password']
+            form_data = request.json
+            form_email = form_data.get('email')
+            form_password = form_data.get('password')
             cb = CouchbaseClient(*db_info.values())
             cb.connect()
             result = cb.find_document(form_email)

@@ -1,49 +1,94 @@
-import React, { useState } from 'react';
-// import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import React, { useState, useEffect } from 'react'; // Import useEffect
+import axios from 'axios';
 import PrimaryColoredBtn from '../components/primary-colored-btn';
 import '../styles/login.css';
 
 export default function LogIn() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    // const [showPassword, setShowPassword] = useState(false);
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log(`Email: ${email}, Password: ${password}`);
-    };
+  const [error, setError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
 
-    // const togglePasswordVisibility = () => {
-    //     setShowPassword(!showPassword);
-    // };
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
-    return (
-        <article className='login'>
-        <article className='login-container'>
-            <h1 className='header-text'>Log In</h1>
-            <p className='sub-text'>Don't have an account? <a href='/signUp'>Sign Up</a></p>
-            <form onSubmit={handleSubmit}>
-                <label className='textfield'>
-                    Email:
-                    <input className='input-field' type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                </label>
-                <br />
-                <label className='textfield'>
-                    Password:
-                    
-                        <input className='input-field' type={ 'password'} value={password} onChange={(e) => setPassword(e.target.value)} />
-                        {/* {showPassword ? (
-                            <FaEyeSlash style={{ marginLeft: '5px', cursor: 'pointer' }} onClick={togglePasswordVisibility} />
-                        ) : (
-                            <FaEye style={{ marginLeft: '5px', cursor: 'pointer' }} onClick={togglePasswordVisibility} />
-                        )} */}
-                    
-                </label>
-                <br />
-                <PrimaryColoredBtn value='Log In' />
-                <a className='forgot-password' href='#'>Forgot Password?</a>
-            </form>
-            </article>
-        </article>
-    );
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://127.0.0.1:5000/login', formData);
+      console.log('Response from Flask:', response.data);
+      setFormData({ email: '', password: '' });
+      setError('');
+      setSuccessMessage('Login Successful ✅');
+    } catch (error) {
+      console.error('Error:', error);
+      setError('Invalid email or password. Please try again.');
+      setSuccessMessage('');
+    }
+  };
+
+  useEffect(() => {
+    if (successMessage) {
+      const timeoutId = setTimeout(() => {
+        setSuccessMessage(''); 
+      }, 3000);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [successMessage]);
+
+  return (
+    <article className='login'>
+      <article className='login-container'>
+        <h1 className='header-text'>Log In</h1>
+        <p className='sub-text'>
+          Don't have an account? <a href='/signUp'>Sign Up</a>
+        </p>
+        {successMessage && (
+          <article className='success-message'>{successMessage}</article>
+        )}
+        <form onSubmit={handleSubmit}>
+          <label className='textfield'>
+            Email address
+            <input
+              className='input-field'
+              name='email'
+              type='email'
+              value={formData.email}
+              onChange={handleInputChange}
+              required
+            />
+          </label>
+
+          <br />
+
+          <label className='textfield'>
+            Password
+            <input
+              className='input-field'
+              name='password'
+              type='password'
+              value={formData.password}
+              onChange={handleInputChange}
+              required
+            />
+          </label>
+          {error && <article className='error-message'>{error}</article>}
+
+          <br />
+
+          <PrimaryColoredBtn value='Log In' type='submit' />
+
+          <a className='forgot-password' href='#'>
+            Forgot Password?
+          </a>
+        </form>
+      </article>
+    </article>
+  );
 }
