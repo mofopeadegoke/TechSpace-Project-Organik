@@ -25,7 +25,7 @@ export default function AboutPage() {
             <article className='aboutPage-main'>
                 <TitleImage text='About Us' imageUrl={titlebg} />
                 <article className='about-section-one'>
-
+                    
                 </article>
                 <article className='about-section-two'>
                     <article className='contentLeft'>
