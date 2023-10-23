@@ -201,26 +201,25 @@ def logout():
     return 'Logged out successfully'
 
 
-
-@app.route('/api/list_all_products', methods=['GET'])
-def list_all_products():
-    try:
-        cluster = Cluster(endpoint, options)
-        cluster.wait_until_ready(timedelta(seconds=5))
-        bucket = cluster.bucket(bucket_name)
-        query = f"SELECT *  FROM `default`:`Farm_eCommerce`.`Products`.`ProductsCollections`"
+# @app.route('/api/list_all_products', methods=['GET'])
+# def list_all_products():
+#     try:
+#         cluster = Cluster(endpoint, options)
+#         cluster.wait_until_ready(timedelta(seconds=5))
+#         bucket = cluster.bucket(bucket_name)
+#         query = f"SELECT *  FROM `default`:`Farm_eCommerce`.`Products`.`ProductsCollections`"
         
-        # result = bucket.n1ql_query(N1QLQuery(query))
-        result = cluster.query(query)
-        print(result)
-        products_document_keys = [row for row in result]
-        return jsonify(products_document_keys)
-        # Fetch the document data for each key
-        # products = [bucket.get(key).content for key in products_document_keys]
+#         # result = bucket.n1ql_query(N1QLQuery(query))
+#         result = cluster.query(query)
+#         print(result)
+#         products_document_keys = [row for row in result]
+#         return jsonify(products_document_keys)
+#         # Fetch the document data for each key
+#         # products = [bucket.get(key).content for key in products_document_keys]
 
-        # return jsonify(products), 200
-    except Exception as e:
-        return f"Error: {str(e)}", 500
+#         # return jsonify(products), 200
+#     except Exception as e:
+#         return f"Error: {str(e)}", 500
     
 @app.route('/api/all_products')
 def products():
@@ -228,26 +227,27 @@ def products():
     cluster.wait_until_ready(timedelta(seconds=5))
     bucket = cluster.bucket(bucket_name)
 
-    # all_products = []
-    query = f"SELECT products FROM Farm_eCommerce.Users.Seller_User WHERE "
+    query = f"SELECT products FROM Farm_eCommerce.Users.Seller_User"
     query_result = cluster.query(query)
     # Retrieve the products
-    # all_product = [row["products"] for row in query_result]
     all_product = [row for row in query_result]
    
     # Use a list comprehension to filter out empty documents and extract products
     products = [doc["products"] for doc in all_product if "products" in doc]
+    # products = [doc for doc in all_product if "products" in doc]
    
     return jsonify(products)
 
-
+@login_required
 @app.route('/api/seller_products')
 def seller_products():
     cluster = Cluster(endpoint, options)
     cluster.wait_until_ready(timedelta(seconds=2))
 	# Get a reference to our bucket
     cb_user = cluster.bucket(bucket_name)
-    seller_id = "ejirobest@gmail.com"
+    # user_id = current_user.get_id()
+    # seller_id = user_id
+    seller_id = ""  # we need to get User_id from users login session
     # Get a reference to our bucket
     cb_user = cluster.bucket(bucket_name)
     # Retrieve the seller's document
@@ -256,11 +256,13 @@ def seller_products():
 
     # Access the list of products the seller is selling
     seller_doc = seller_document.get(seller_id, quiet = True)
-    Company = seller_doc.value['name']
+    # Company = seller_doc.value['name']
     products = seller_doc.value['products']
 
     return jsonify(product = products)
 
+
+@login_required
 @app.route('/api/add_products', methods = ["POST"])
 def add_products():
     
@@ -272,10 +274,7 @@ def add_products():
     sellers = cb_user.scope("Users").collection("Seller_User")
     # user_data = cb_user_coll.get(email, quiet=True)
     new_product = request.json
-    # print(new_product)
-    # seller_id = payload['username']
-    # Define the seller's unique identifier
-    seller_id = "ejirobest@gmail.com"  # Replace with the seller's actual ID
+    seller_id = ""  # Get the Uses ID from the login session
     new_product["seller_id"] = seller_id
     try:
         # Retrieve the seller's document
@@ -296,14 +295,12 @@ def add_products():
     except DocumentExistsException:
         return "Seller document does not exist", 404
 
-@app.route('/api/search_products', methods=['GET'])
+@app.route('/api/search_products', methods=['POST'])
 def search_products():
     """
-    Function or the route to search for a specific product. it allows a GET
+    Function or the route to search for a specific product. it allows a POST
     request from the user and then queries the database which response is a 
     json value of the products with the product name and category search key.
-
-    get request sent as q=product_name. 
 
     """
     try:
@@ -314,75 +311,37 @@ def search_products():
 	    # Get a reference to our bucket
         bucket = cluster.bucket(bucket_name)
         # Get the search query from the request parameters
-        search_query = request.args.get('q', default='', type=str)
+        # search_query = request.args.get('q', default='', type=str)
+        search = request.json
+        search_query = search['search']
+        # search_query = request.form['search product']
 
         # Build a N1QL query to search for products matching the search query
-        query = f"SELECT * FROM `default`:`Farm_eCommerce`.`Products`.`ProductsCollections`WHERE (LOWER(name) LIKE LOWER('%{search_query}%') OR LOWER(category) LIKE LOWER('%{search_query}%'))"
-        
-        # result = bucket.n1ql_query(N1QLQuery(query))
-        result = cluster.query(query)
-        search_results = [row for row in result]
+        query = f"SELECT products FROM Farm_eCommerce.Users.Seller_User"
+        query_result = cluster.query(query)
+        # Retrieve the products
+        all_product = [row for row in query_result]
+   
+        # Use a list comprehension to filter out empty documents and extract products
+        products = [doc for doc in all_product if "products" in doc]
 
-        return jsonify(search_results), 200
+        # Process and display the products subdocument
+        if products:
+            products_subdocument = products[0]['products']
+            print("Products Subdocument:")
+            print(products_subdocument)
+            
+            # search/filter the products within the subdocument
+            search_term = search_query  # Replace with your search term
+            filtered_products = [product for product in products_subdocument if search_term.lower() in product['name'].lower()]
+            if filtered_products == []:
+                return("Product not found")
+            return jsonify(filtered_products), 200
+        else:
+            print("Seller not found or has no products.")
+
     except Exception as e:
         return f"Error: {str(e)}", 500
-
-
-# @app.route('/api/add_to_cart', methods=['POST'])
-# def add_to_cart():
-#     user_id = "user-1"  # Replace with the actual user's ID
-#     product_id = request.json.get("product_id")
-#     quantity = request.json.get("quantity", 1)
-
-#     try:
-#         # Retrieve the user's cart document
-#         user_cart = bucket.get(user_id).content
-#     except DocumentNotFoundException:
-#         # Create a new cart if it doesn't exist
-#         user_cart = {
-#             "cart": []
-#         }
-
-#     # Add the product to the user's cart
-#     user_cart["cart"].append({
-#         "product_id": product_id,
-#         "quantity": quantity
-#     })
-
-#     # Update the user's cart document
-#     bucket.upsert(user_id, user_cart)
-
-#     return "Product added to cart"
-
-# @app.route('/get_cart', methods=['GET'])
-# def get_cart():
-#     user_id = "user-1"  # Replace with the actual user's ID
-
-#     try:
-#         # Retrieve the user's cart document
-#         user_cart = bucket.get(user_id).content
-#         return jsonify(user_cart.get("cart", []))
-#     except DocumentNotFoundException:
-#         return jsonify([])
-
-# @app.route('/checkout', methods=['POST'])
-# def checkout():
-#     user_id = "user-1"  # Replace with the actual user's ID
-
-#     try:
-#         # Retrieve the user's cart document
-#         user_cart = bucket.get(user_id).content
-#         cart_contents = user_cart.get("cart", [])
-
-#         # Process the cart contents (e.g., calculate the total cost, update inventory, etc.)
-
-#         # Clear the user's cart after checkout
-#         user_cart["cart"] = []
-#         bucket.upsert(user_id, user_cart)
-
-#         return "Checkout successful"
-#     except DocumentNotFoundException:
-#         return "Cart is empty"
 
 
 if __name__ == '__main__':
