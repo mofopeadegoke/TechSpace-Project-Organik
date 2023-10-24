@@ -234,7 +234,7 @@ def seller_signup():
     return jsonify(response_data)
 
 @app.route('/seller/login', methods=['POST'])
-def login():
+def seller_login():
     if request.method == 'POST':
             form_data = request.json
             form_email = form_data.get('email')
@@ -245,9 +245,9 @@ def login():
             if result == []:
                 response_data = f"Couldn't find the email '{form_email}'"
                 return jsonify(response_data)
-            db_password = result[0]['clients']['password']
+            db_password = result[0]['sellers']['password']
             if bcrypt.check_password_hash(db_password, form_password):
-                id = result[0]['clients']['id']
+                id = result[0]['sellers']['id']
                 user = User(id)
                 login_user(user)
                 response_data = f"Successfully logged user, UWU :)"
