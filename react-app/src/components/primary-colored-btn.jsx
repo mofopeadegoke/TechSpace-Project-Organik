@@ -1,4 +1,4 @@
-import rightArrow from "../assests/btn-right-arrow.png";
+import rightArrow from "../assets/btn-right-arrow.png";
 import "./styles/primary-colored-btn.css";
 export default function PrimaryColoredBtn(props) {
     return (

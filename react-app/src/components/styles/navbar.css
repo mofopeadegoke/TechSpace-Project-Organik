@@ -2,7 +2,11 @@
     --primary-green: #00B207;
 }
 nav.navbar {
-    padding: 4rem 1.5rem;
+    padding: 2rem 1.5rem;
+}
+.close-icon,
+.menu-icon {
+    display: none;
 }
 nav.navbar .logo {
     margin-right: 5px;
@@ -74,3 +78,79 @@ nav.navbar button {
     font-weight: 700;
     line-height: 130%;
 }
+ 
+.menu-overlay {
+    display: none;
+}
+
+@media screen and (max-width: 1100px) {
+    .close-icon,
+    .menu-icon {
+        display: inline;
+        margin-right: 1rem;
+        cursor: pointer;
+     }
+     .hide-me  {
+        display: none;
+     }
+
+     .menu-overlay {
+        background: #fff;
+    }
+    .menu-overlay {    
+        position: absolute;
+        inset: 1;
+        display: inline-block;
+        left: 0;
+        width: 100%;
+        z-index: 99999;
+    }
+    
+    .nav-leftt {
+        background: white;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        margin-top: 2rem;
+        gap: 4rem;
+        margin-left: 3rem;
+        list-style: none;
+    }
+
+    .menu-overlay .sm-hide {
+        display: none;
+    }
+
+    nav.navbar {
+        padding: 2rem 0.7rem;
+    }
+
+    }
+
+
+    @media screen and (max-width: 591px) {
+        .nav-left {
+            margin-left: 0;
+        }
+        .menu-overlay {
+            margin-left: 0;
+        }
+
+        .sm-hide1 {
+            display: none;
+        }
+
+        .menu-overlay .sm-hide {
+            display: block;
+            overflow: hidden;
+        }
+
+        nav.navbar ul {
+            padding-left: 0;
+        }
+
+        nav.navbar {
+            padding: 2rem 2rem;
+        }
+    }
+  

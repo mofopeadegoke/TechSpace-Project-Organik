@@ -1,7 +1,7 @@
 import "./styles/footer.css";
-import InstagramIcon from "../assests/insta-icon.png";
-import FacebookIcon from "../assests/facebook-icon.png";
-import TwitterIcon from "../assests/twitter-icon.png";
+import InstagramIcon from "../assets/insta-icon.png";
+import FacebookIcon from "../assets/facebook-icon.png";
+import TwitterIcon from "../assets/twitter-icon.png";
 export default function Footer() {
     return (
         <>
@@ -23,7 +23,7 @@ export default function Footer() {
                 </article>
                 <article className="company-text">
                     <h3>Organick</h3>
-                    <p>Simply dummy text of the printing and typesetting industry. Lorem Ipsum simply dummy text of the printing </p>
+                    <p>"Farming Fresh, Feeding Future. Organic Goodness Delivered Daily, Rooted in Nature's Best. Taste the Difference with Us, Your Farm-to-Fork Choice!"</p>
                     <div className="socials-row">
                         <img src={InstagramIcon} alt="The Instagram icon on a green background" />
                         <img src={FacebookIcon} alt="The Facebook icon on a green background" />
@@ -32,12 +32,10 @@ export default function Footer() {
                 </article>
                 <article className="quick-links">
                     <h3>Quick Links</h3>
-                    <a href="#">Team</a>
-                    <a href="#">How To</a>
-                    <a href="#">News</a>
-                    <a href="#">About</a>
-                    <a href="#">Login</a>
-                    <a href="#">Sign Up</a>
+                    <a href="/about">About</a>
+                    <a href="/login">Login</a>
+                    <a href="/signUp">Sign Up</a>
+                    <a href="/sellersSignUp">Sign Up as a Seller</a>
                 </article>
             </article>
         </>
