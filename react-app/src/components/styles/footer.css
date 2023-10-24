@@ -44,3 +44,27 @@ article.footerComponent article.quick-links {
     flex-direction: column;
     row-gap: 2rem;
 }
+@media all and (max-width: 900px) {
+    article.footerComponent {
+        grid-template-rows: auto auto auto;
+        grid-template-columns: auto;
+        padding: 1.5rem 3.5rem;
+        row-gap: 2rem;
+        text-align: center;
+    }
+    article.footerComponent article.company-text {
+        padding-inline: 1rem;
+    }
+    article.footerComponent article.contact-content {
+        padding-inline-end: 1rem;
+        padding-block-end: 0;
+        text-align: center;
+    }
+    article.footerComponent article.quick-links {
+        padding-inline-start: 0;
+        row-gap: 10px;
+    }
+    article.footerComponent article.contact-content {
+        row-gap: 10px;
+    }
+}

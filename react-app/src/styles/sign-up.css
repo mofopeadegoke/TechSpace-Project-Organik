@@ -1,13 +1,13 @@
 .signup {
-  background-image: url("../assets/home-section-two-cardImg-two.jpg");
-  background-size: cover;
-  background-position: center;
-  background-color: black;
-  padding: 5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    background-image: url("../assets/home-section-two-cardImg-two.jpg");
+    background-size: cover;
+    background-position: center;
+    background-color: black;
+    padding: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .signup a {
@@ -16,10 +16,10 @@
 }
 
 .signup-container {
-  background-color: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(0.2rem);
-  border-radius: 0.75rem;
-  padding: 0.3rem 2rem;
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(0.2rem);
+    border-radius: 0.75rem;
+    padding: 0.3rem 2rem;
 }
 
 .signup .header-text,
@@ -32,7 +32,12 @@
 }
 
 .signup .sign-up-header {
-  font-size: 1rem;
+    font-size: 1rem;
+}
+
+.signup .sub-text {
+    font-size: 1rem;
+    margin-bottom: 1rem;
 }
 
 .signup .sub-text {
@@ -41,13 +46,13 @@
 }
 
 .signup .input-field {
-  height: 3rem;
-  box-sizing: border-box;
-  border-radius: 0.75rem;
-  border: 1px solid rgba(102, 102, 102, 0.35);
-  width: 100%;
-  padding: 1rem;
-  font-size: 0.8rem;
+    height: 3rem;
+    box-sizing: border-box;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(102, 102, 102, 0.35);
+    width: 100%;
+    padding: 1rem;
+    font-size: 0.8rem;
 }
 
 .textfield {
@@ -63,13 +68,14 @@
 }
 
 .bottom-section {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    justify-content: space-between;
 }
+
 
 @media screen and (max-width: 768px) {
   .signup {

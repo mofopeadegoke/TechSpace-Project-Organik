@@ -33,3 +33,19 @@ article.single-product article.category {
     color: #FFF;
     display: inline-flex;
 }
+@media all and (max-width: 900px) {
+    article.single-product {
+        max-width: 14rem;
+        height: 20rem;
+        border: 1px solid black;
+    }
+    article.single-product img {
+        padding: 0.5rem 0.75rem;
+    }
+    article.single-product article.footer {
+        left: 13px;
+    }
+    #hidMobile {
+        display: none;
+    }
+}
