@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -10,7 +11,9 @@ export default function LogIn() {
     email: '',
     password: '',
   });
+
   const navigate = useNavigate();
+
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
@@ -28,6 +31,7 @@ export default function LogIn() {
       setFormData({ email: '', password: '' });
       setError('');
       setSuccessMessage('Login Successful ✅');
+
       setTimeout(() => {
         setSuccessMessage('');
         navigate('/home');
@@ -69,6 +73,7 @@ export default function LogIn() {
 
       return () => clearTimeout(timeoutId);
     }
+
   }, [successMessage, error]);
 
   return (

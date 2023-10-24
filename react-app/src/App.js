@@ -15,20 +15,21 @@ import CheckoutPage from "./pages/checkout-page";
 function App() {
   const [data, setData] = useState({});
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:5000/api/data")
-      .then((response) => {
-        setData(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:5000/api/register")
+  //     .then((response) => {
+  //       setData(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching data:", error);
+  //     });
+  // }, []);
 
   return (
     <>
       <BrowserRouter>
+
         <Routes>
           <Route index element={<HomePage />}></Route>
           <Route path="/about" element={<AboutPage />}></Route>
@@ -42,6 +43,7 @@ function App() {
           <Route path="/checkout" element={<CheckoutPage />}></Route>
           <Route path="*" element={<HomePage />} />
         </Routes>
+
       </BrowserRouter>
     </>
   );
