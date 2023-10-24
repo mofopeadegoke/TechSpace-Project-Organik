@@ -1,0 +1,20 @@
+article.shopping-cart-main {
+    border: 1px solid black;
+    width: 80%;
+    margin-inline: auto;
+    padding-block: 10rem;
+    display: flex;
+    flex-direction: column;
+}
+article.shopping-cart-main table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+article.shopping-cart-main table th,
+article.shopping-cart-main table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #E1E1E4;
+}
