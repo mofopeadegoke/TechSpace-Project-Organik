@@ -1,0 +1,21 @@
+.product-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.product-card .product-card-header{
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+.product-card .card-image {
+    height: 3rem;
+}
+
+.product-card .card-title {
+    font-family: Poppins;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+}
