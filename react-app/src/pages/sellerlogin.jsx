@@ -26,7 +26,7 @@ export default function LogIn() {
     e.preventDefault();
     
     try {
-      const response = await axios.post('http://127.0.0.1:5000/login', formData);
+      const response = await axios.post('http://127.0.0.1:5000//seller/login', formData);
       console.log('Response from Flask:', response.data);
       setFormData({ email: '', password: '' });
       setError('');
@@ -63,9 +63,9 @@ export default function LogIn() {
             <Notification message={successMessage} onClose={() => setSuccessMessage('')} />
           )}
         <article className='login-container'>
-          <h1 className='header-text'>Log In</h1>
+          <h1 className='header-text'>Seller Login</h1>
           <p className='sub-text'>
-            Don't have an account? <a href='/signUp'>Sign Up</a>
+            Don't have an account? <a href='/sellerSignup'>Sign Up</a>
           </p>
           <form onSubmit={handleSubmit}>
             <label className='textfield'>
@@ -96,11 +96,9 @@ export default function LogIn() {
             {error && <article className='error-message'>{error}</article>}
 
             <br />
-            <article className="bottom-text">
             <PrimaryColoredBtn value='Log In' type='submit' />
-            <a href="/sellerlogin" className='sub-text'>
-              Login as a seller </a>
-            </article>
+            
+           
             
           </form>
         </article>

@@ -75,7 +75,7 @@ export default function SellerSignUp() {
         <>
             <article className='seller-signup'>
                 <article className='seller-signup-container'>
-                    <h1 className='header-text'>Sign up now</h1>
+                    <h1 className='header-text'>Seller Sign-up</h1>
                     <form onSubmit={handleSubmit}>
                         <label className='textfield'>
                             Fullname

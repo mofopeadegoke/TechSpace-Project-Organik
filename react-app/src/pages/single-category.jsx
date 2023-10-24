@@ -1,7 +1,7 @@
 import "../styles/single-category.css";
 import darkSearchIcon from "../assets/dark-search-icon.png";
 import TitleImage from "../components/title-image";
-import oilImg from "../assets/oil-category-img.png";
+// import oilImg from "../assets/oil-category-img.png";
 import brocolliImg from "../assets/brocolli.png"
 import cucumberImg from "../assets/cucumber.png"
 import onionImg from "../assets/onion.png"

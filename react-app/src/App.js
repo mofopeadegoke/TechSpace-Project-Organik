@@ -11,6 +11,8 @@ import SingleProductPage from "./pages/single-product-page";
 import SellerSignUp from "./pages/sellers-signup";
 import ShoppingCartPage from "./pages/shopping-cart";
 import CheckoutPage from "./pages/checkout-page";
+import Dashboard from "./pages/dashboard";
+import SellerLogin from "./pages/sellerlogin";
 
 function App() {
   const [data, setData] = useState({});
@@ -41,6 +43,8 @@ function App() {
           <Route path="/singleCategory" element={<SingleCategory />}></Route>
           <Route path="/shoppingCart" element={<ShoppingCartPage />}></Route>
           <Route path="/checkout" element={<CheckoutPage />}></Route>
+          <Route path="/dashboard" element={<Dashboard />}></Route>
+          <Route path="/sellerlogin" element={<SellerLogin />}></Route>
           <Route path="*" element={<HomePage />} />
         </Routes>
 
