@@ -55,14 +55,14 @@ export default function Navbar() {
                 About Us
               </a>
             </li>
-            <li className="hide-me">
+            {/* <li className="hide-me">
               <a href="#">
                 <div className="search-container">
                   <img src={SearchIcon} alt="Magnifying glasses in a green background" />
                   <input type="text" placeholder="Search Product" />
                 </div>
               </a>
-            </li>
+            </li> */}
             <li className="sm-hide1">
               <div className="cart-container">
                 <img src={CartIcon} alt="A white shopping cart icon with a green background" />
@@ -100,14 +100,14 @@ export default function Navbar() {
                 About Us
               </a>
             </li>
-            <li className="sm-show">
+            {/* <li className="sm-show">
               <a href="#">
                 <div className="search-container">
                   <img src={SearchIcon} alt="Magnifying glasses in a green background" />
                   <input type="text" placeholder="Search Product" />
                 </div>
               </a>
-            </li>
+            </li> */}
             <li className="sm-hide">
               <div className="sm-show cart-container">
                 <img src={CartIcon} alt="A white shopping cart icon with a green background" />
