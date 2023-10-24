@@ -1,0 +1,55 @@
+.order-summary {
+    display: flex;
+    flex-direction: column;
+    width: 23rem;
+    padding: 1.3rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    gap: 1.5rem;
+}
+
+.order-summary .header-title {
+    margin-bottom: 1rem;
+    font-family: Poppins;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.order-summary .total-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-summary p.order-text {
+    font-size: 1rem;
+    font-weight: lighter;
+    color: #ccc;
+}
+
+.order-summary .total-price {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #060F12;
+}
+
+.order-summary .big-bold {
+    font-size: 1.25rem;
+    font-weight: 600;
+
+}
+
+.order-summary .h-line {
+    border: 1px solid #dbdbdb;
+    margin: 0.3rem 0;
+}
+
+@media screen and (max-width: 824px) { 
+    .order-summary {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+}
+
+
