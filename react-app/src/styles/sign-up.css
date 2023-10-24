@@ -8,7 +8,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
 }
 
 .signup a {
@@ -21,7 +20,6 @@
     backdrop-filter: blur(0.2rem);
     border-radius: 0.75rem;
     padding: 0.3rem 2rem;
-    height: 100vh;
 }
 
 .signup .header-text,

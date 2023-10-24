@@ -1,6 +1,10 @@
 * {
     box-sizing: border-box;
 }
+.shop-page-main {
+    position: relative;
+}
+
 .shop-page-main form.search-container {
     width: 75%;
     margin-inline: auto;
