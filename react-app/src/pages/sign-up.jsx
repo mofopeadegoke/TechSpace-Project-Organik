@@ -41,10 +41,10 @@ export default function SignUp() {
 
             setFormData({ fullname: '', email: '', password: '' });
             setError('');
-            setSuccess('Signup Successful! You can now log in.');
+            setSuccess('Signup Successful! Redirecting to home! UWU:)');
             setTimeout(() => {
                 setSuccess('');
-                navigate('/shop');
+                navigate('/home');
             }, 3000);
 
         } catch (error) {

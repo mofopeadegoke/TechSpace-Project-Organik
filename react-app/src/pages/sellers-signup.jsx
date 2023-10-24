@@ -40,7 +40,7 @@ export default function SellerSignUp() {
         }
 
         try {
-            const response = await axios.post('http://127.0.0.1:5000/register', formData);
+            const response = await axios.post('http://127.0.0.1:5000/seller/register', formData);
             console.log('Response from Flask:', response.data);
 
             setFormData({
@@ -54,10 +54,10 @@ export default function SellerSignUp() {
             });
 
             setError('');
-            setSuccess('Sign up Successful! Redirecting to dashboard...');
+            setSuccess('Sign up Successful! Redirecting to home! UWU:)');
             setTimeout(() => {
                 setSuccess('');
-                navigate('/shop');
+                navigate('/home');
             }, 3000);
 
         } catch (error) {
