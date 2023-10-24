@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navbar from "./components/navbar";
-import Footer from "./components/footer";
 import HomePage from "./pages/home";
 import axios from "axios";
 import AboutPage from "./pages/about";
@@ -29,7 +27,6 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Navbar />
         <Routes>
           <Route index element={<HomePage />}></Route>
           <Route path="/about" element={<AboutPage />}></Route>
@@ -41,7 +38,6 @@ function App() {
           <Route path="/singleCategory" element={<SingleCategory />}></Route>
           <Route path="*" element={<HomePage />} />
         </Routes>
-        <Footer />
       </BrowserRouter>
     </>
   );

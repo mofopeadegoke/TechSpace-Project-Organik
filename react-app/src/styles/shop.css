@@ -86,7 +86,10 @@
 .shop-page-main article.section-two article.single-product {
     transform: scale(0.8);
 }
-
+.shop-page-main article.section-three {
+    width: 75%;
+    margin-inline: auto;
+}
 @media all and (max-width: 900px) {
     .shop-page-main article.features-container {
         display: none;
@@ -104,5 +107,8 @@
     .shop-page-main article.section-two article.products-container {
         column-gap: 0;
         justify-content: flex-start;
+    }
+    .shop-page-main article.section-three {
+        width: 90%;
     }
 }

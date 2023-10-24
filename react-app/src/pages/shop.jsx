@@ -20,9 +20,13 @@ import onionImg from "../assets/onion.png"
 import cutOnionImg from "../assets/cutOnion.png"
 import SingleCategoryCard from "../components/single-category-card";
 import SingleProduct from "../components/single-product";
+import Subscribe from "../components/subscribe";
+import Navbar from "../components/navbar";
+import Footer from "../components/footer";
 export default function ShopPage() {
     return (
         <>
+            <Navbar />
             <article className="shop-page-main">
                 <TitleImage text='Shop Product' imageUrl={titlebg} />
                 <form className="search-container" method="POST">
@@ -86,7 +90,11 @@ export default function ShopPage() {
                         <SingleProduct category="Vegetable" imgUrl={cutOnionImg} altText="An image of cut open cabbage" price="$17.00" name="Cabbage" uniqueId="hidMobile"/>
                     </article>
                 </article>
+                <article className="section-three">
+                    <Subscribe />
+                </article>
             </article>
+            <Footer />
         </>
     )
 }

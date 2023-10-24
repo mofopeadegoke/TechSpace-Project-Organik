@@ -10,10 +10,13 @@ import onionImg from "../assets/onion.png";
 import cutOnionImg from "../assets/cutOnion.png";
 import SingleProduct from '../components/single-product';
 import Subscribe from '../components/subscribe';
+import Navbar from "../components/navbar";
+import Footer from "../components/footer";
 
 export default function SingleProductPage() {
     return (
         <>
+            <Navbar />
             <article className="single-product-page">
                 <TitleImage text='Single Product' imageUrl={titlebg} />
                 <form className="search-container" method="POST">
@@ -46,6 +49,7 @@ export default function SingleProductPage() {
                     <Subscribe />
                 </article>
             </article>
+            <Footer />
         </>
     )
 }

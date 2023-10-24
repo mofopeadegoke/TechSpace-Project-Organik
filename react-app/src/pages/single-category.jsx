@@ -8,10 +8,13 @@ import onionImg from "../assets/onion.png"
 import cutOnionImg from "../assets/cutOnion.png"
 import TitleImg from "../assets/single-category-title-img.png";
 import SingleProduct from "../components/single-product";
+import Navbar from "../components/navbar";
+import Footer from "../components/footer";
 
 export default function SingleCategory() {
     return (
         <>
+            <Navbar />
             <article className="singleCategoryMain">
                 <TitleImage imageUrl={TitleImg} text="Category Name"/>
                 <form className="search-container" method="POST">
@@ -34,6 +37,7 @@ export default function SingleCategory() {
                         <SingleProduct category="Vegetable" imgUrl={cutOnionImg} altText="An image of cut open cabbage" price="$17.00" name="Cabbage" uniqueId="hidMobile"/>
                 </article>
             </article>
+            <Footer />
         </>
     )
 }

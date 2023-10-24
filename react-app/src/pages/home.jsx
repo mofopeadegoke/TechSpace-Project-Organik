@@ -10,9 +10,12 @@ import cucumberImg from "../assets/cucumber.png"
 import onionImg from "../assets/onion.png"
 import cutOnionImg from "../assets/cutOnion.png"
 import Subscribe from "../components/subscribe";
+import Navbar from "../components/navbar";
+import Footer from "../components/footer";
 export default function HomePage() {
     return (
         <>
+            <Navbar />
             <article className="homePage-main">
                 <article className="section-one">
                     <article className="content">
@@ -48,14 +51,15 @@ export default function HomePage() {
                             About Us
                         </p>
                         <h2>We Believe in Working Accredited Farmers</h2>
-                        <p>Simply dummy text of the printing and typesetting industry. Lorem had ceased to been the industry's standard dummy text ever since the 1500s, when an unknownprinter took a galley.</p>
+                        <p>
+                        At the core of our values, we wholeheartedly believe in supporting and collaborating with accredited farmers, forming enduring partnerships aimed at empowering them to not only attain but also surpass their goals. Our commitment goes beyond mere assistance; it's a dedication to nurturing their growth, fostering sustainable practices, and jointly realizing a thriving future in agriculture.</p>
                         <article className="row">
                             <article className="img-container">
                                 <img src={FoodBowl} alt="A food bowl icon" />
                             </article>
                             <article className="content">
                                 <h3>Organic Foods Only</h3>
-                                <p>Simply dummy text of the printing and typesetting industry. Lorem Ipsum</p>
+                                <p>We offer a curated selection of only the finest organic products. Our mission is to promote health and sustainability by providing exclusively organic options to our customers.</p>
                             </article>
                         </article>
                         <article className="row">
@@ -64,7 +68,7 @@ export default function HomePage() {
                             </article>
                             <article className="content">
                                 <h3>Quality Standards</h3>
-                                <p>Simply dummy text of the printing and typesetting industry. Lorem Ipsum</p>
+                                <p>Every product we offer meets the highest benchmarks for excellence. We take pride in our rigorous quality control measures, guaranteeing the utmost satisfaction for our customers.</p>
                             </article>
                         </article>
                         <PrimaryColoredBtn value="Shop Now"/>
@@ -91,6 +95,7 @@ export default function HomePage() {
                     <Subscribe />
                 </article>
             </article>
+            <Footer />
         </>
     )
 }
