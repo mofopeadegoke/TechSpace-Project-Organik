@@ -9,6 +9,7 @@ import SignUp from "./pages/sign-up";
 import SingleCategory from "./pages/single-category";
 import SingleProductPage from "./pages/single-product-page";
 import SellerSignUp from "./pages/sellers-signup";
+import ShoppingCartPage from "./pages/shopping-cart";
 
 function App() {
   const [data, setData] = useState({});
@@ -36,6 +37,7 @@ function App() {
           <Route path="/signUp" element={<SignUp />}></Route>
           <Route path="/sellerSignup" element={<SellerSignUp />}></Route>
           <Route path="/singleCategory" element={<SingleCategory />}></Route>
+          <Route path="/shoppingCart" element={<ShoppingCartPage />}></Route>
           <Route path="*" element={<HomePage />} />
         </Routes>
       </BrowserRouter>
