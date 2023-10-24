@@ -9,11 +9,11 @@ export default function Subscribe() {
                 backgroundSize: 'cover',}}>
                 <article className='subscribe-text'>
                     <h1 className='subscribe-title'>Subscribe to newsletter</h1>
-                    <div className="subscribe-input">
-                                <input id="emailInput" type="text" placeholder="Enter your email" />
-                                <button className='subscribe-btn'>Subscribe</button>
-                            </div>
-                            </article>
+                    <form action='https://formspree.io/f/myyqodye' className="subscribe-input" method='POST'>
+                        <input id="emailInput" type="text" placeholder="Enter your email" />
+                        <button className='subscribe-btn'>Subscribe</button>
+                    </form>
+                    </article>
                 </article>
     )
 }
