@@ -78,6 +78,13 @@ class CouchbaseClient:
         result = self._cluster.query(n1ql_query).execute()
         count = result[0]['$1']
         return count == 0 
+    def is_companyname_unique(self, companyname):
+        n1ql_query = f"""SELECT COUNT(*) FROM `{self.bucket_name}`.{self.scope_name}.{self.collection_name}
+                        WHERE companyName = "{companyname}"
+                    """
+        result = self._cluster.query(n1ql_query).execute()
+        count = result[0]['$1']
+        return count == 0 
     def find_document(self, field):
             try:
 
@@ -122,6 +129,15 @@ db_info = {
     "bucket": os.getenv("BUCKET"),
     "scope": os.getenv("SCOPE_USER"),
     "collection": os.getenv("COLLECTION_USER_CLIENT"),
+    "username": os.getenv("USER"),
+    "password": os.getenv("PASSWORD"),
+}
+
+seller_db_info = {
+    "host": os.getenv("DB_HOST"),
+    "bucket": os.getenv("BUCKET"),
+    "scope": os.getenv("SCOPE_USER"),
+    "collection": os.getenv("COLLECTION_SELLER_CLIENT"),
     "username": os.getenv("USER"),
     "password": os.getenv("PASSWORD"),
 }
@@ -174,6 +190,70 @@ def signup():
         login_user(user)
         response_data = {'message': 'User created successfully, UWU:)'}
     return jsonify(response_data)
+
+@app.route('/seller/register', methods=['POST'])
+def seller_signup():
+    if request.method == 'POST':
+        form_data = request.json
+        fullname = form_data.get('fullname')
+        companyName = form_data.get('companyName')
+        phoneNumber = form_data.get('phoneNumber')
+        country = form_data.get('country')
+        zipcode = form_data.get('zipcode')
+        email = form_data.get('email')
+        password = form_data.get('password')
+        cb = CouchbaseClient(*seller_db_info.values())
+        cb.connect()
+        cb.create_index()
+        cb.create_index_on_document()
+        if not cb.is_email_unique(email):
+            response_data = "Email is already in use. Please choose another."
+            return jsonify(response_data)
+        if not cb.is_username_unique(fullname):
+            response_data = "Username is already in use. Please choose another."
+            return jsonify(response_data)
+        if not cb.is_companyname_unique(companyName):
+            response_data = "Company name is already in use. Please choose another."
+            return jsonify(response_data)
+        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+        id = str(uuid.uuid4())
+        user_doc = {
+            "id": id,
+            "name": fullname,
+            "email": email,
+            "password": hashed_password,
+            "companyName": companyName,
+            "phoneNumber": phoneNumber,
+            "country": country,
+            "zipcode": zipcode
+        }
+        cb.upsert(user_doc, id)
+        user = User(id)
+        login_user(user)
+        response_data = {'message': 'User created successfully, UWU:)'}
+    return jsonify(response_data)
+
+@app.route('/seller/login', methods=['POST'])
+def login():
+    if request.method == 'POST':
+            form_data = request.json
+            form_email = form_data.get('email')
+            form_password = form_data.get('password')
+            cb = CouchbaseClient(*seller_db_info.values())
+            cb.connect()
+            result = cb.find_document(form_email)
+            if result == []:
+                response_data = f"Couldn't find the email '{form_email}'"
+                return jsonify(response_data)
+            db_password = result[0]['clients']['password']
+            if bcrypt.check_password_hash(db_password, form_password):
+                id = result[0]['clients']['id']
+                user = User(id)
+                login_user(user)
+                response_data = f"Successfully logged user, UWU :)"
+                return jsonify(response_data)
+            response_data = f"Wrong username or password"
+            return jsonify(response_data)
 
 @app.route('/login', methods=['POST'])
 def login():
