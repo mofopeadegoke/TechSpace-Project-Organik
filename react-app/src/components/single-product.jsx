@@ -14,7 +14,7 @@ export default function SingleProduct(props) {
                         <p className="product-price">
                             {props.price}
                         </p>
-                        <Rating/>
+                        <Rating id={props.id}/>
                     </article>
                 </article>
             </article>
