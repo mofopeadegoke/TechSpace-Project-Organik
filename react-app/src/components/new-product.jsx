@@ -94,6 +94,8 @@ export default function NewProduct() {
         </article>
         <article className='flex-container'>
           <label className='label-leftside' htmlFor="price">Price</label>
+          <article>
+          <span className='dollar-sign'>$</span>
           <input className='input-rigthside'
             type="text"
             id="price"
@@ -102,6 +104,7 @@ export default function NewProduct() {
             onChange={handleInputChange}
             required
           />
+          </article>
         </article>
         <article className='flex-container'>
           <label className='label-leftside' htmlFor="quantity">Quantity</label>
@@ -120,6 +123,7 @@ export default function NewProduct() {
           className='diss-pad'
             id="description"
             name="description"
+            placeholder='Enter product description...'
             value={productData.description}
             onChange={handleInputChange}
             required
