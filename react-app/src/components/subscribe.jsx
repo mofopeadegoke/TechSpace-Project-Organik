@@ -10,8 +10,8 @@ export default function Subscribe() {
                 <article className='subscribe-text'>
                     <h1 className='subscribe-title'>Subscribe to newsletter</h1>
                     <form action='https://formspree.io/f/myyqodye' className="subscribe-input" method='POST'>
-                        <input id="emailInput" type="text" placeholder="Enter your email" />
-                        <button className='subscribe-btn'>Subscribe</button>
+                        <input id="emailInput" placeholder="Enter your email" name='email' typeof='email'/>
+                        <button className='subscribe-btn' type='submit'>Subscribe</button>
                     </form>
                     </article>
                 </article>

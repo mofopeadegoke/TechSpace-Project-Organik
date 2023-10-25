@@ -12,6 +12,7 @@ import cutOnionImg from "../assets/cutOnion.png"
 import Subscribe from "../components/subscribe";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
+import { Link } from "react-router-dom";
 export default function HomePage() {
     return (
         <>
@@ -23,7 +24,9 @@ export default function HomePage() {
                             100% Natural Food
                         </p>
                         <h1>Choose the best healthier way of life</h1>
-                        <PrimaryColoredBtn value="Explore Now"/>
+                        <Link to="/shop">
+                            <PrimaryColoredBtn value="Explore Now"/>
+                        </Link>
                     </article>
                 </article>
                 <article className="section-two">
@@ -71,7 +74,9 @@ export default function HomePage() {
                                 <p>Every product we offer meets the highest benchmarks for excellence. We take pride in our rigorous quality control measures, guaranteeing the utmost satisfaction for our customers.</p>
                             </article>
                         </article>
-                        <PrimaryColoredBtn value="Shop Now"/>
+                        <Link to="/shop">
+                            <PrimaryColoredBtn value="Shop Now"/>
+                        </Link>
                     </article>
                 </article>
                 <article className="section-four">
@@ -82,7 +87,9 @@ export default function HomePage() {
                         <p className="title-text">
                             We Offer Organic For You
                         </p>
-                        <PrimaryColoredDarkBtn value="View All Product"/>
+                        <Link to="/shop">
+                            <PrimaryColoredBtn value="View all products"/>
+                        </Link>
                     </div>
                     <article className="products">
                         <SingleProduct category="Vegetable" imgUrl={brocolliImg} altText="An image of brocolli" price="$11.00" name="Mung Bean"/>
