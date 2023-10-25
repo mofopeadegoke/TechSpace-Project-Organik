@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import Navbar from "../components/navbar";
 import TitleImage from "../components/title-image";
 import Footer from "../components/footer";
@@ -6,6 +7,34 @@ import greenPepperImg from "../assets/green-pepper.png";
 import redPepperImg from "../assets/red-pepper.png";
 import "../styles/shopping-cart.css";
 export default function ShoppingCartPage() {
+    let [count1, setCount1] = useState(0);
+    let [count2, setCount2] = useState(0);
+
+    const increaseCount1 = () => {
+        setCount1(count1 + 1);
+    };
+
+    const decreaseCount1 = () => {
+        if (count1 <= 0) {
+            return;
+        }
+        setCount1(count1 - 1);
+    };
+
+    const increaseCount2 = () => {
+        setCount2(count2 + 1);
+    };
+
+    const decreaseCount2 = () => {
+        if (count2 <= 0) {
+            return;
+        }
+        setCount2(count2 - 1);
+    };
+    const clearValue = () => {
+        setCount1(0);
+        setCount2(0);
+    }
     return (
         <>
             <Navbar />
@@ -41,13 +70,13 @@ export default function ShoppingCartPage() {
                                     </td>
                                     <td>
                                         <article className="order-btn-row">
-                                            <button>-</button>
-                                            <p className="value">5</p>
-                                            <button>+</button>
+                                            <button onClick={decreaseCount1}>-</button>
+                                            <p className="value">{count1}</p>
+                                            <button onClick={increaseCount1}>+</button>
                                         </article>
                                     </td>
                                     <td>
-                                        $70.00
+                                        {"$" + count1*14}
                                     </td>
                                 </tr>
                                 <tr>
@@ -62,18 +91,18 @@ export default function ShoppingCartPage() {
                                     </td>
                                     <td>
                                         <article className="order-btn-row">
-                                            <button>-</button>
-                                            <p className="value">5</p>
-                                            <button>+</button>
+                                            <button onClick={decreaseCount2}>-</button>
+                                            <p className="value">{count2}</p>
+                                            <button onClick={increaseCount2}>+</button>
                                         </article>
                                     </td>
                                     <td>
-                                        $70.00
+                                        {"$" + count2*14}
                                     </td>
                                 </tr>
                             </table>
                         </article>
-                        <button>Clear</button>
+                        <button onClick={clearValue}>Clear</button>
                     </article>
                     <article className="right-product-container">
                         <p>Cart Totals</p>
