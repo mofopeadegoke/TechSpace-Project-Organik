@@ -85,6 +85,16 @@ class CouchbaseClient:
         result = self._cluster.query(n1ql_query).execute()
         count = result[0]['$1']
         return count == 0 
+    def show_all_product(self):
+            try:
+                n1ql_query = f"""
+                                SELECT * FROM `{self.bucket_name}`.{self.scope_name}.{self.collection_name};
+                                """
+                result = self._cluster.query(n1ql_query).execute()
+                return result
+
+            except CouchbaseException as e:
+                print("Product not found")
     def find_document(self, field):
             try:
 
@@ -138,6 +148,15 @@ seller_db_info = {
     "bucket": os.getenv("BUCKET"),
     "scope": os.getenv("SCOPE_USER"),
     "collection": os.getenv("COLLECTION_SELLER_CLIENT"),
+    "username": os.getenv("USER"),
+    "password": os.getenv("PASSWORD"),
+}
+
+product_db_info = {
+    "host": os.getenv("DB_HOST"),
+    "bucket": os.getenv("BUCKET"),
+    "scope": os.getenv("SCOPE_CART"),
+    "collection": os.getenv("COLLECTION_PRODUCT_ITEM"),
     "username": os.getenv("USER"),
     "password": os.getenv("PASSWORD"),
 }
@@ -310,6 +329,20 @@ def add_products():
         #     }
         #     cb.insert(seller_id + "::" + product_name, data)
         return render_template('index.html', successMessage="Successfully created user, UWU :)")
+
+
+#Showing all products
+@app.route('/show_all_products', methods=['GET'])
+def show_products():
+    cb = CouchbaseClient(*product_db_info.values())
+    cb.connect()
+    products = cb.show_all_product()
+    print(products)
+    response_data = products
+    return jsonify(response_data)
+    
+    # return  render_template('index.html', successMessage="Successfully created user, UWU :)")
+
 
 @app.route('/logout')
 @login_required

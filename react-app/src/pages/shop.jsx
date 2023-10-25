@@ -1,4 +1,6 @@
-import "../styles/shop.css"
+import "../styles/shop.css";
+import axios from "axios";
+import { useEffect } from "react";
 import TitleImage from "../components/title-image"
 import titlebg from '../assets/shop-page-title-img.png';
 import darkSearchIcon from "../assets/dark-search-icon.png";
@@ -24,6 +26,12 @@ import Subscribe from "../components/subscribe";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 export default function ShopPage() {
+    useEffect(() => {
+        async function handleRequest() {
+            const response = await axios.get('http://127.0.0.1:5000/show_all_products');
+            console.log(response)
+        }
+    }, [])
     return (
         <>
             <Navbar />
