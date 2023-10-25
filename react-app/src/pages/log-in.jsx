@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import PrimaryColoredBtn from '../components/primary-colored-btn';
 import '../styles/login.css';
-import Notification from '../components/notification'; // Make sure to import the Notification component
+import Notification from '../components/notification'; 
 
 export default function LogIn() {
   const [formData, setFormData] = useState({
@@ -21,7 +21,6 @@ export default function LogIn() {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     
