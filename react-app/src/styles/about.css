@@ -114,6 +114,9 @@
     justify-content: center;
     align-items: center;
 }
+.about-section-five {
+    padding: 5rem;
+}
 
 @media (max-width:640px) {
     .aboutPage-main .about-section-two, .about-section-three-above {
@@ -149,6 +152,10 @@
         margin-bottom: 1rem;
         font-size: 2.125rem;
     }
+    .about-section-five {
+        padding: 3rem;
+    }
+    
 }
 
 @media (max-width: 450px) {
@@ -207,4 +214,7 @@
     .aboutPage-main .about-discription {
         width: 100%;
     }
+    .about-section-five {
+        padding: 1rem;
+    }    
 }

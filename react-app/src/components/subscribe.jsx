@@ -1,5 +1,5 @@
 import './styles/subscribe.css';
-import background from '../assets/newsletter-bg.png';
+import background from '../assets/subscribe.png';
 
 export default function Subscribe() {
     return (
