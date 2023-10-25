@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './styles/new-product.css';
 
@@ -11,6 +11,8 @@ export default function NewProduct() {
     quantity: '',
     description: '',
   });
+  const [successMessage, setSuccessMessage] = useState('');
+  const [error, setError] = useState('');
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -26,19 +28,33 @@ export default function NewProduct() {
     try {
       const response = await axios.post('http://127.0.0.1:5000/products', productData);
       console.log('Product added successfully:', response.data);
-
       setProductData({
         productName: '',
-        productId: '',
         category: '',
         price: '',
         quantity: '',
         description: '',
       });
+      setSuccessMessage('Product added successfully ✅');
+      setError('');
+
     } catch (error) {
       console.error('Error adding the product:', error);
+      setError('Error adding the product. Please try again.');
+      setSuccessMessage('');
     }
   };
+
+  useEffect(() => {
+    if (successMessage || error) {
+      const timeoutId = setTimeout(() => {
+        setSuccessMessage('');
+        setError('');
+      }, 3000);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [successMessage, error]);
 
   return (
     <article className='new-product'>
@@ -52,6 +68,7 @@ export default function NewProduct() {
             name="productName"
             value={productData.productName}
             onChange={handleInputChange}
+            required
           />
         </article>
         <article className='flex-container'>
@@ -59,8 +76,10 @@ export default function NewProduct() {
           <select className='select-button'
             id="category"
             name="category"
+            type="text"
             value={productData.category}
             onChange={handleInputChange}
+            required
           >
             <option value="">Select Category</option>
             <option value="Category 1">Fruits</option>
@@ -81,6 +100,7 @@ export default function NewProduct() {
             name="price"
             value={productData.price}
             onChange={handleInputChange}
+            required
           />
         </article>
         <article className='flex-container'>
@@ -91,6 +111,7 @@ export default function NewProduct() {
             name="quantity"
             value={productData.quantity}
             onChange={handleInputChange}
+            required
           />
         </article>
         <article className='flex-container'>
@@ -101,6 +122,7 @@ export default function NewProduct() {
             name="description"
             value={productData.description}
             onChange={handleInputChange}
+            required
           />
           </article>
         <button className='add-product-btn' type="submit">Add Product</button>
