@@ -13,6 +13,7 @@ import ShoppingCartPage from "./pages/shopping-cart";
 import CheckoutPage from "./pages/checkout-page";
 import Dashboard from "./pages/dashboard";
 import SellerLogin from "./pages/sellerlogin";
+import UserDashboard from "./components/auth";
 
 function App() {
   const [data, setData] = useState({});
@@ -45,6 +46,7 @@ function App() {
           <Route path="/checkout" element={<CheckoutPage />}></Route>
           <Route path="/dashboard" element={<Dashboard />}></Route>
           <Route path="/sellerlogin" element={<SellerLogin />}></Route>
+          <Route path="/auth" element={<UserDashboard />}></Route>
           <Route path="*" element={<HomePage />} />
         </Routes>
 

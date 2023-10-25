@@ -7,6 +7,7 @@ import '../styles/login.css';
 import Notification from '../components/notification'; // Make sure to import the Notification component
 
 export default function LogIn() {
+  let id;
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -26,8 +27,9 @@ export default function LogIn() {
     e.preventDefault();
     
     try {
-      const response = await axios.post('http://127.0.0.1:5000//seller/login', formData);
+      const response = await axios.post('http://127.0.0.1:5000/seller/login', formData);
       console.log('Response from Flask:', response.data);
+      id = response.data;
       setFormData({ email: '', password: '' });
       setError('');
       setSuccessMessage('Login Successful ✅');
@@ -42,8 +44,14 @@ export default function LogIn() {
       setError('Invalid email or password. Please try again.');
       setSuccessMessage('');
     }
+    axios.get('http://127.0.0.1:5000/seller/login').then(response => {
+        id = response.data;
+        console.log(id);
+    }).catch(error => {
+      console.log(error);
+    })
   };
-
+  console.log(id);
   useEffect(() => {
     if (successMessage || error) {
       const timeoutId = setTimeout(() => {

@@ -76,7 +76,7 @@ export default function SellerSignUp() {
             <article className='seller-signup'>
                 <article className='seller-signup-container'>
                     <h1 className='header-text'>Seller Sign-up</h1>
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} method='POST' action='/seller/register'>
                         <label className='textfield'>
                             Fullname
                             <input
@@ -163,7 +163,10 @@ export default function SellerSignUp() {
                         {error && <article className="error-message">{error}</article>}
                         <br />
                         <p className='sub-text'>By creating an account, I agree to our <a href='/home'>Terms of use</a> and <a href='/home'>Terms of use</a></p>
-                        <PrimaryColoredBtn type="submit" value='Sign up' />
+                        {/* <PrimaryColoredBtn type="submit" value='Sign up' /> */}
+                        <button type='submit'>
+                            Sign in
+                        </button>
                     </form>
                     <article className='bottom-section'>
                         <p className='bottom-text'>Already have an account?<a className='forgot-password' href='/logIn'>Log in</a></p>

@@ -16,6 +16,7 @@ from couchbase.n1ql import N1QLQuery
 from couchbase.options import ClusterOptions
 from dotenv import load_dotenv
 from flask import Flask, jsonify, render_template, request, redirect, url_for
+from flask_session import Session
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from flask_cors import CORS
@@ -30,7 +31,7 @@ class CouchbaseClient:
         self.collection_name = collection
         self.username = username
         self.password = password
-        print("Initialization completed successfully")
+
     def connect(self, **kwargs):
         conn_str = self.host
         auth = PasswordAuthenticator(self.username, self.password)
@@ -46,24 +47,18 @@ class CouchbaseClient:
         except CouchbaseException as error:
             print(f"Could not connect to cluster. Error: {error}")
             raise 
+
     def create_index(self):
         try:
             createIndexProfile = f"CREATE PRIMARY INDEX default_profile_index ON {self.bucket_name}.{self.scope_name}.{self.collection_name}"
             createIndex = f"CREATE PRIMARY INDEX ON {self.bucket_name}"
-
             self._cluster.query(createIndexProfile).execute()
             self._cluster.query(createIndex).execute()
         except CouchbaseException as e:
             print("Index already exists")
         except Exception as e:
             print(f"Error: {type(e)}{e}")
-    def create_index_on_document(self):
-        try:
-            n1ql_query = f"CREATE INDEX ix_email ON `{self.bucket_name}`.{self.scope_name}.{self.collection_name}(email);"
-            self._cluster.query(n1ql_query).execute()
-            print("Index successfully created")
-        except CouchbaseException as e:
-            print("Index already exists")
+
     def is_email_unique(self, email):
         n1ql_query = f"""SELECT COUNT(*) FROM `{self.bucket_name}`.{self.scope_name}.{self.collection_name}
                         WHERE email = "{email}"
@@ -71,6 +66,7 @@ class CouchbaseClient:
         result = self._cluster.query(n1ql_query).execute()
         count = result[0]['$1']
         return count == 0
+    
     def is_username_unique(self, username):
         n1ql_query = f"""SELECT COUNT(*) FROM `{self.bucket_name}`.{self.scope_name}.{self.collection_name}
                         WHERE name = "{username}"
@@ -78,6 +74,7 @@ class CouchbaseClient:
         result = self._cluster.query(n1ql_query).execute()
         count = result[0]['$1']
         return count == 0 
+    
     def is_companyname_unique(self, companyname):
         n1ql_query = f"""SELECT COUNT(*) FROM `{self.bucket_name}`.{self.scope_name}.{self.collection_name}
                         WHERE companyName = "{companyname}"
@@ -85,28 +82,61 @@ class CouchbaseClient:
         result = self._cluster.query(n1ql_query).execute()
         count = result[0]['$1']
         return count == 0 
-    def show_all_product(self):
-            try:
-                n1ql_query = f"""
-                                SELECT * FROM `{self.bucket_name}`.{self.scope_name}.{self.collection_name};
-                                """
-                result = self._cluster.query(n1ql_query).execute()
-                return result
 
-            except CouchbaseException as e:
-                print("Product not found")
-    def find_document(self, field):
+    def find_document_email(self, field):
             try:
-
                 n1ql_query = f"""
                                 SELECT * FROM `{self.bucket_name}`.{self.scope_name}.{self.collection_name}
                                 WHERE email = "{field}";
                                 """
                 result = self._cluster.query(n1ql_query).execute()
                 return result  
-
             except CouchbaseException as e:
                 print("User not found")
+
+    def find_product_by_id(self, product_id):
+            try:
+                n1ql_query = f"""
+                                SELECT * FROM `{self.bucket_name}`.{self.scope_name}.{self.collection_name}
+                                WHERE product_id = '{product_id}';
+                                """
+                result = self._cluster.query(n1ql_query).execute()
+                return result
+            except CouchbaseException as e:
+                print("User not found")
+
+    def find_product(self, seller_id, product_name):
+            try:
+                n1ql_query = f"""
+                                SELECT * FROM `{self.bucket_name}`.{self.scope_name}.{self.collection_name}
+                                WHERE seller_id = "{seller_id}" AND product_name = "{product_name}";
+                                """
+                result = self._cluster.query(n1ql_query).execute()
+                return result
+            except CouchbaseException as e:
+                print("User not found")
+
+    def get_all_products(self):
+            try:
+                n1ql_query = f"""
+                                SELECT * FROM `{self.bucket_name}`.{self.scope_name}.{self.collection_name};
+                                """
+                result = self._cluster.query(n1ql_query).execute()
+                return result
+            except CouchbaseException as e:
+                print("User not found")
+
+    def show_seller_product(self, seller_id):
+        try:
+            n1ql_query = f"""
+                             SELECT * FROM `{self.bucket_name}`.{self.scope_name}.{self.collection_name}
+                            WHERE seller_id = "{seller_id}";
+                            """
+            result = self._cluster.query(n1ql_query).execute()
+            return result
+        except CouchbaseException as e:
+            print("User not found")
+
     def load_user(self, id):
         n1ql_query = f"""
                         SELECT * FROM `{self.bucket_name}`.{self.scope_name}.{self.collection_name}
@@ -116,25 +146,33 @@ class CouchbaseClient:
         if result==[]:
             return None
         return result[0]
+    
     def upsert(self, doc, id):
         try:
             key = id
         except CouchbaseException as e:
             print(e)
-        print(f'Sucessfully added {doc["name"]} to {self.collection_name}')
-        return self._collection.upsert(key, doc)   
+        print(f'Document inserted and updated successfully')
+        return self._collection.upsert(key, doc) 
+      
+    def insert(self, key, doc):
+        print("Document inserted successfully")
+        return self._collection.insert(key, doc)
+    
     def remove(self, key):
         return self._collection.remove(key)  
 
 
-app = Flask(__name__)
-CORS(app, origins="http://localhost:3000")  
+app = Flask(__name__)  
+CORS(app)
 app.secret_key = os.getenv("SECRET_KEY")
 login_manager.init_app(app)
+app.config['SESSION_TYPE'] = 'filesystem' 
+Session(app)
 bcrypt = Bcrypt(app)
 
 load_dotenv()
-db_info = {
+client_db_info = {
     "host": os.getenv("DB_HOST"),
     "bucket": os.getenv("BUCKET"),
     "scope": os.getenv("SCOPE_USER"),
@@ -152,6 +190,15 @@ seller_db_info = {
     "password": os.getenv("PASSWORD"),
 }
 
+item_db_info = {
+    "host": os.getenv("DB_HOST"),
+    "bucket": os.getenv("BUCKET"),
+    "scope": os.getenv("SCOPE_CART"),
+    "collection": os.getenv("COLLECTION_PRODUCT_ITEM"),
+    "username": os.getenv("USER"),
+    "password": os.getenv("PASSWORD"),
+}
+
 product_db_info = {
     "host": os.getenv("DB_HOST"),
     "bucket": os.getenv("BUCKET"),
@@ -161,10 +208,10 @@ product_db_info = {
     "password": os.getenv("PASSWORD"),
 }
 
-cb = CouchbaseClient(*db_info.values())
+cb = CouchbaseClient(*client_db_info.values())
 cb.connect()
 cb.create_index()
-cb.create_index_on_document()
+
 
 class User(UserMixin):
     def __init__(self, id):
@@ -190,6 +237,9 @@ def signup():
         fullname = form_data.get('fullname')
         email = form_data.get('email')
         password = form_data.get('password')
+        cb = CouchbaseClient(*client_db_info.values())
+        cb.connect()
+        cb.create_index()
         if not cb.is_email_unique(email):
             response_data = "Email is already in use. Please choose another."
             return jsonify(response_data)
@@ -224,7 +274,6 @@ def seller_signup():
         cb = CouchbaseClient(*seller_db_info.values())
         cb.connect()
         cb.create_index()
-        cb.create_index_on_document()
         if not cb.is_email_unique(email):
             response_data = "Email is already in use. Please choose another."
             return jsonify(response_data)
@@ -254,25 +303,40 @@ def seller_signup():
 
 @app.route('/seller/login', methods=['POST'])
 def seller_login():
-    if request.method == 'POST':
-            form_data = request.json
-            form_email = form_data.get('email')
-            form_password = form_data.get('password')
-            cb = CouchbaseClient(*seller_db_info.values())
-            cb.connect()
-            result = cb.find_document(form_email)
-            if result == []:
-                response_data = f"Couldn't find the email '{form_email}'"
-                return jsonify(response_data)
+        form_data = request.json
+        form_email = form_data.get('email')
+        form_password = form_data.get('password')
+        print(form_email, form_password)
+        cb = CouchbaseClient(*seller_db_info.values())
+        cb.connect()
+        result = cb.find_document_email(form_email)
+        if result:
             db_password = result[0]['sellers']['password']
             if bcrypt.check_password_hash(db_password, form_password):
                 id = result[0]['sellers']['id']
                 user = User(id)
                 login_user(user)
-                response_data = f"Successfully logged user, UWU :)"
+                user_id = current_user.get_id()
+                data = {"message": user_id}
+                return jsonify(data)
+                # response_data = f"{user_id}"
+                # return response_data
+            else:
+                response_data = f"Wrong username or password"
                 return jsonify(response_data)
-            response_data = f"Wrong username or password"
+        else:
+            response_data = f"Couldn't find the email '{form_email}'"
             return jsonify(response_data)
+    
+@app.route('/user')
+@login_required
+def get_user():
+    return jsonify({"username": current_user.id})
+
+
+@app.route('/flask-rendered-page')
+def flask_rendered_page():
+    return render_template('flask_rendered_template.html')
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -280,7 +344,8 @@ def login():
             form_data = request.json
             form_email = form_data.get('email')
             form_password = form_data.get('password')
-            result = cb.find_document(form_email)
+            print(form_email, form_password)
+            result = cb.find_document_email(form_email)
             if result == []:
                 response_data = f"Couldn't find the email '{form_email}'"
                 return jsonify(response_data)
@@ -291,57 +356,76 @@ def login():
                 login_user(user)
                 response_data = f"Successfully logged user, UWU :)"
                 return jsonify(response_data)
-                # return redirect(url_for('dashboard'))
             response_data = f"Wrong username or password"
             return jsonify(response_data)
     
 @app.route('/add', methods=['POST'])
-@login_required
 def add_products():
-    if request.method == 'POST':
-        form_data = request.json
-        product_name = form_data.get('productName')
-        category = form_data.get('category')
-        price = form_data.get('price')
-        quantity = form_data.get('quantity')
-        description = form_data.get('description')
-        user_info = current_user.get_id()
-        user_info = user_info.replace("'", "\"")
-        user_info_dict = json.loads(user_info)
-        # seller_id = user_info_dict['clients']['id']
-        print(user_info_dict)
-        # id = str(uuid.uuid4())
-        # cb = CouchbaseClient(*seller_db_info.values())
-        # cb.connect()
-        # existing_data = cb.find_product(seller_id, product_name)  
-        # if existing_data:
-        #     existing_data[0]['items']['quantity'] = quantity
-        #     cb.upsert(existing_data, seller_id + "::" + product_name)
-        # else:
-        #     data = {
-        #         "seller_id": seller_id,
-        #         "product_id": id,
-        #         "product_name": product_name,
-        #         "category": category,
-        #         "price": price,
-        #         "description": description,
-        #         "quantity": quantity
-        #     }
-        #     cb.insert(seller_id + "::" + product_name, data)
-        return render_template('index.html', successMessage="Successfully created user, UWU :)")
-
-
-#Showing all products
-@app.route('/show_all_products', methods=['GET'])
-def show_products():
-    cb = CouchbaseClient(*product_db_info.values())
+    form_data = request.json
+    product_name = form_data.get('productName')
+    category = form_data.get('category')
+    price = form_data.get('price')
+    quantity = form_data.get('quantity')
+    description = form_data.get('description')
+    user_info = current_user.get_id()
+    user_info = user_info.replace("'", "\"")
+    user_info_dict = json.loads(user_info)
+    print(user_info_dict)
+    seller_id = user_info_dict['clients']['id']
+    id = str(uuid.uuid4())
+    cb = CouchbaseClient(*item_db_info.values())
     cb.connect()
-    products = cb.show_all_product()
-    print(products)
-    response_data = products
+    existing_data = cb.find_product(seller_id, product_name)  
+    if existing_data:
+        new_quantity = quantity
+        new_price = price
+        print(new_quantity)
+        data = {
+            "seller_id": seller_id,
+            "category": category,
+            "product_id": id,
+            "product_name": product_name,
+            "quantity": new_quantity,
+            "description": description,
+            "price": new_price
+        }
+        cb.upsert(data, seller_id + "::" + product_name)
+    else:
+        data = {
+            "seller_id": seller_id,
+            "category": category,
+            "product_id": id,
+            "product_name": product_name,
+            "quantity": quantity,
+            "description": description,
+            "price": price
+        }
+        cb.insert(seller_id + "::" + product_name, data)
+    response_data = f"Successfully added item to database, UWU :)"
     return jsonify(response_data)
+        
+@app.route('/products', methods=['GET'])
+@login_required
+def show_products():
+    cb = CouchbaseClient(*item_db_info.values())
+    cb.connect()
+    products = cb.get_all_products()
+    for item in products:
+        inner_dict = item['items']
+        product_id = inner_dict['product_id']
+        product_name = inner_dict['product_name']
+        quantity = inner_dict['quantity']
+        price = inner_dict['price']
+        
+        print(f"Product ID: {product_id}")
+        print(f"Product Name: {product_name}")
+        print(f"Quantity: {quantity}")
+        print(f"Price: {price}")
+    # response_data = f"Successfully added item to database, UWU :)"
+    # return jsonify(response_data)
+
     
-    # return  render_template('index.html', successMessage="Successfully created user, UWU :)")
+    return  render_template('index.html', successMessage="Successfully created user, UWU :)")
 
 
 @app.route('/logout')
