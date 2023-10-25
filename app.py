@@ -281,9 +281,10 @@ def login():
 def logout():
     logout_user()
     response_data = f"Sucessfully logged out user"
-    # return redirect(url_for('login'))
     return jsonify(response_data)
     
+
+
 
 @app.route('/dashboard')
 @login_required
