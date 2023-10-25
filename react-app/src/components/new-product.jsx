@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './styles/new-product.css';
 
 export default function NewProduct() {
@@ -6,7 +7,6 @@ export default function NewProduct() {
     productName: '',
     productId: '',
     category: '',
-    image: null,
     price: '',
     quantity: '',
     description: '',
@@ -39,7 +39,6 @@ export default function NewProduct() {
         productName: '',
         productId: '',
         category: '',
-        image: null,
         price: '',
         quantity: '',
         description: '',
@@ -53,16 +52,6 @@ export default function NewProduct() {
     <article className='new-product'>
       <h2 className='new-title'>New Product</h2>
       <form className='new-form' onSubmit={handleSubmit}>
-        <div className='flex-container'>
-          <label className='label-leftside' htmlFor="image">Upload Image</label>
-          <input className='input-rigthside'
-            type="file"
-            id="image"
-            name="image"
-            accept="image/*"
-            onChange={handleImageChange}
-          />
-        </div>
         <div className='flex-container'>
           <label className='label-leftside' htmlFor="productName">Product Name</label>
           <input className='input-rigthside'
