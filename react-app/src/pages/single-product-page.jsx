@@ -39,10 +39,18 @@ export default function SingleProductPage() {
                 <article className='section-two'>
                 <h1 className='related-product'>Related Products</h1>
                 <article className="products">
-                        <SingleProduct category="Vegetable" imgUrl={brocolliImg} altText="An image of brocolli" price="$11.00" name="Mung Bean"/>
-                        <SingleProduct category="Vegetable" imgUrl={cucumberImg} altText="An image of a green hazelnut" price="$12.00" name="Brown Hazelnut"/>
-                        <SingleProduct category="Vegetable" imgUrl={onionImg} altText="An image of onions" price="$17.00" name="Onion"/>
-                        <SingleProduct category="Vegetable" imgUrl={cutOnionImg} altText="An image of cut open cabbage" price="$17.00" name="Caggage"/>
+                        <a href="/singleProduct">
+                            <SingleProduct category="Vegetable" imgUrl={brocolliImg} altText="An image of brocolli" price="$11.00" name="Mung Bean" id="id9"/>
+                        </a>
+                        <a href="/singleProduct">
+                            <SingleProduct category="Vegetable" imgUrl={cucumberImg} altText="An image of a green hazelnut" price="$12.00" name="Brown Hazelnut" id="id1"/>
+                        </a>
+                        <a href="/singleProduct">
+                            <SingleProduct category="Vegetable" imgUrl={onionImg} altText="An image of onions" price="$17.00" name="Onion" id="id2"/>
+                        </a>
+                        <a href="/singleProduct">
+                            <SingleProduct category="Vegetable" imgUrl={cutOnionImg} altText="An image of cut open cabbage" price="$17.00" name="Cabbage" id="id3"/>
+                        </a>
                     </article>
                 </article>
                 <article className="subscribe">

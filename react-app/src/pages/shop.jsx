@@ -71,14 +71,30 @@ export default function ShopPage() {
                         <p className="green-text">View All <img src={rightArrow} alt="A green arrow pointing to the right" /></p>
                     </div>
                     <article className="category-container">
-                        <SingleCategoryCard imgUrl={freshFruitsImg} altText="Varieties of fresh fruits" name="Fresh Fruit"/>
-                        <SingleCategoryCard imgUrl={freshVegetableImg} altText="Varieties of fresh vegetables" name="Fresh Vegetables"/>
-                        <SingleCategoryCard imgUrl={meatAndFishImg}altText="Varieties of meat and fish" name="Meat & Fish"/>
-                        <SingleCategoryCard imgUrl={snacksImg} altText="Varieties of snacks" name="Snacks"/>
-                        <SingleCategoryCard imgUrl={seaFoodImg} altText="Varieties of sea foods" name="Sea Foods"/>
-                        <SingleCategoryCard imgUrl={bakingNeedsImg} altText="Varieties of baking materials" name="Baking Needs"/>
-                        <SingleCategoryCard imgUrl={diabeticFoodImg} altText="Varieties of diabetic foods" name="Diabetic Food"/>
-                        <SingleCategoryCard imgUrl={oilImg} altText="Varieties of cooking oil" name="Oil"/>
+                        <a href="/singleCategory">
+                            <SingleCategoryCard imgUrl={freshFruitsImg} altText="Varieties of fresh fruits" name="Fresh Fruit"/>
+                        </a>
+                        <a href="/singleCategory">
+                            <SingleCategoryCard imgUrl={freshVegetableImg} altText="Varieties of fresh vegetables" name="Fresh Vegetables"/>
+                        </a>
+                        <a href="/singleCategory">
+                            <SingleCategoryCard imgUrl={meatAndFishImg}altText="Varieties of meat and fish" name="Meat & Fish"/>
+                        </a>
+                        <a href="/singleCategory">
+                            <SingleCategoryCard imgUrl={snacksImg} altText="Varieties of snacks" name="Snacks"/>
+                        </a>
+                        <a href="/singleCategory">
+                            <SingleCategoryCard imgUrl={seaFoodImg} altText="Varieties of sea foods" name="Sea Foods"/>
+                        </a>
+                        <a href="/singleCategory">
+                            <SingleCategoryCard imgUrl={bakingNeedsImg} altText="Varieties of baking materials" name="Baking Needs"/>
+                        </a>
+                        <a href="/singleCategory">
+                            <SingleCategoryCard imgUrl={diabeticFoodImg} altText="Varieties of diabetic foods" name="Diabetic Food"/>
+                        </a>
+                        <a href="/singleCategory">
+                            <SingleCategoryCard imgUrl={oilImg} altText="Varieties of cooking oil" name="Oil"/>
+                        </a>
                     </article>
                 </article>
                 <article className="section-two">
@@ -87,15 +103,33 @@ export default function ShopPage() {
                         <p className="green-text">View All <img src={rightArrow} alt="A green arrow pointing to the right" /></p>
                     </div>
                     <article className="products-container">
-                        <a href="/singleproduct"><SingleProduct category="Vegetable" imgUrl={brocolliImg} altText="An image of brocolli" price="$11.00" name="Mung Bean"/></a>
-                        <SingleProduct category="Vegetable" imgUrl={cucumberImg} altText="An image of a green hazelnut" price="$12.00" name="Brown Hazelnut" id="id1"/>
-                        <SingleProduct category="Vegetable" imgUrl={onionImg} altText="An image of onions" price="$17.00" name="Onion" id="id2"/>
-                        <SingleProduct category="Vegetable" imgUrl={cutOnionImg} altText="An image of cut open cabbage" price="$17.00" name="Cabbage" id="id3"/>
-                        <SingleProduct category="Vegetable" imgUrl={brocolliImg} altText="An image of brocolli" price="$11.00" name="Mung Bean" uniqueId="hidMobile" id="id4"/>
-                        <SingleProduct category="Vegetable" imgUrl={cucumberImg} altText="An image of a green hazelnut" price="$12.00" name="Brown Hazelnut" uniqueId="hidMobile" id="id5"/>
-                        <SingleProduct category="Vegetable" imgUrl={onionImg} altText="An image of onions" price="$17.00" name="Onion" uniqueId="hidMobile" id="id6"/>
-                        <SingleProduct category="Vegetable" imgUrl={cutOnionImg} altText="An image of cut open cabbage" price="$17.00" name="Cabbage" uniqueId="hidMobile" id="id7"/>
-                        <SingleProduct category="Vegetable" imgUrl={cutOnionImg} altText="An image of cut open cabbage" price="$17.00" name="Cabbage" uniqueId="hidMobile" id="id8"/>
+                        <a href="/singleProduct">
+                            <SingleProduct category="Vegetable" imgUrl={brocolliImg} altText="An image of brocolli" price="$11.00" name="Mung Bean" id="id9"/>
+                        </a>
+                        <a href="/singleProduct">
+                            <SingleProduct category="Vegetable" imgUrl={cucumberImg} altText="An image of a green hazelnut" price="$12.00" name="Brown Hazelnut" id="id1"/>
+                        </a>
+                        <a href="/singleProduct">
+                            <SingleProduct category="Vegetable" imgUrl={onionImg} altText="An image of onions" price="$17.00" name="Onion" id="id2"/>
+                        </a>
+                        <a href="/singleProduct">
+                            <SingleProduct category="Vegetable" imgUrl={cutOnionImg} altText="An image of cut open cabbage" price="$17.00" name="Cabbage" id="id3"/>
+                        </a>
+                        <a href="/singleProduct">
+                            <SingleProduct category="Vegetable" imgUrl={brocolliImg} altText="An image of brocolli" price="$11.00" name="Mung Bean" uniqueId="hidMobile" id="id4"/>
+                        </a>
+                        <a href="/singleProduct">
+                            <SingleProduct category="Vegetable" imgUrl={cucumberImg} altText="An image of a green hazelnut" price="$12.00" name="Brown Hazelnut" uniqueId="hidMobile" id="id5"/>
+                        </a>
+                        <a href="/singleProduct">
+                            <SingleProduct category="Vegetable" imgUrl={onionImg} altText="An image of onions" price="$17.00" name="Onion" uniqueId="hidMobile" id="id6"/>
+                        </a>
+                        <a href="/singleProduct">
+                            <SingleProduct category="Vegetable" imgUrl={cutOnionImg} altText="An image of cut open cabbage" price="$17.00" name="Cabbage" uniqueId="hidMobile" id="id7"/>
+                        </a>
+                        <a href="/singleProduct">
+                            <SingleProduct category="Vegetable" imgUrl={cutOnionImg} altText="An image of cut open cabbage" price="$17.00" name="Cabbage" uniqueId="hidMobile" id="id8"/>
+                        </a>
                     </article>
                 </article>
                 <article className="section-three">
