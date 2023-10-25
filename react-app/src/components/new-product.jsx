@@ -24,12 +24,11 @@ export default function NewProduct() {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://127.0.0.1:5000/products', productData);
+      const response = await axios.post('http://127.0.0.1:5000/add', productData);
       console.log('Product added successfully:', response.data);
 
       setProductData({
         productName: '',
-        productId: '',
         category: '',
         price: '',
         quantity: '',

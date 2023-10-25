@@ -275,6 +275,41 @@ def login():
                 # return redirect(url_for('dashboard'))
             response_data = f"Wrong username or password"
             return jsonify(response_data)
+    
+@app.route('/add', methods=['POST'])
+@login_required
+def add_products():
+    if request.method == 'POST':
+        form_data = request.json
+        product_name = form_data.get('productName')
+        category = form_data.get('category')
+        price = form_data.get('price')
+        quantity = form_data.get('quantity')
+        description = form_data.get('description')
+        user_info = current_user.get_id()
+        user_info = user_info.replace("'", "\"")
+        user_info_dict = json.loads(user_info)
+        # seller_id = user_info_dict['clients']['id']
+        print(user_info_dict)
+        # id = str(uuid.uuid4())
+        # cb = CouchbaseClient(*seller_db_info.values())
+        # cb.connect()
+        # existing_data = cb.find_product(seller_id, product_name)  
+        # if existing_data:
+        #     existing_data[0]['items']['quantity'] = quantity
+        #     cb.upsert(existing_data, seller_id + "::" + product_name)
+        # else:
+        #     data = {
+        #         "seller_id": seller_id,
+        #         "product_id": id,
+        #         "product_name": product_name,
+        #         "category": category,
+        #         "price": price,
+        #         "description": description,
+        #         "quantity": quantity
+        #     }
+        #     cb.insert(seller_id + "::" + product_name, data)
+        return render_template('index.html', successMessage="Successfully created user, UWU :)")
 
 @app.route('/logout')
 @login_required
@@ -283,7 +318,6 @@ def logout():
     response_data = f"Sucessfully logged out user"
     return jsonify(response_data)
     
-
 
 
 @app.route('/dashboard')
