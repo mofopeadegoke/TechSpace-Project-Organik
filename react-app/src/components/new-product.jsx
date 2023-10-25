@@ -7,6 +7,9 @@ export default function NewProduct() {
     productId: '',
     category: '',
     image: null,
+    price: '',
+    quantity: '',
+    description: '',
   });
 
   const handleInputChange = (e) => {
@@ -25,9 +28,25 @@ export default function NewProduct() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(productData);
+
+    try {
+      const response = await axios.post('http://127.0.0.1:5000/products', productData);
+      console.log('Product added successfully:', response.data);
+
+      setProductData({
+        productName: '',
+        productId: '',
+        category: '',
+        image: null,
+        price: '',
+        quantity: '',
+        description: '',
+      });
+    } catch (error) {
+      console.error('Error adding the product:', error);
+    }
   };
 
   return (
