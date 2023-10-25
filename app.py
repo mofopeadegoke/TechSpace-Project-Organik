@@ -58,7 +58,6 @@ class CouchbaseClient:
             print("Index already exists")
         except Exception as e:
             print(f"Error: {type(e)}{e}")
-
     def is_email_unique(self, email):
         n1ql_query = f"""SELECT COUNT(*) FROM `{self.bucket_name}`.{self.scope_name}.{self.collection_name}
                         WHERE email = "{email}"
