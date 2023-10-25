@@ -35,7 +35,7 @@ export default function Footer() {
                     <a href="/about">About</a>
                     <a href="/login">Login</a>
                     <a href="/signUp">Sign Up</a>
-                    <a href="/sellersSignUp">Sign Up as a Seller</a>
+                    <a href="/sellerSignUp">Sign Up as a Seller</a>
                 </article>
             </article>
         </>

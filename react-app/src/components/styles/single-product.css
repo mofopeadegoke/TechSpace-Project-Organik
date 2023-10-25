@@ -25,6 +25,10 @@ article.single-product article.product-details {
 article.single-product article.footer {
     position: absolute;
     bottom: 0;
+    width: 100%;
+}
+article.single-product article.footer .product-price {
+    margin-right: 4rem;
 }
 article.single-product article.category {
     border-radius: 8px;
