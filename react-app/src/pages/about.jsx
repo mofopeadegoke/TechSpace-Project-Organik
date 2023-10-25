@@ -1,7 +1,7 @@
-import titlebg from '../assets/aboutbg.png';
+import titlebg from '../assets/about-bg.png';
 import TitleImage from '../components/title-image';
-import about1 from '../assets/about1.png';
-import about2 from '../assets/about2.png';
+import about1 from '../assets/about-img1 (1).png';
+import about2 from '../assets/Photo (6).png';
 import '../styles/about.css';
 import IconText from '../components/icon-text';
 import PrimaryColoredBtn from '../components/primary-colored-btn';
@@ -31,7 +31,7 @@ export default function AboutPage() {
                 </article>
                 <article className='about-section-two'>
                     <article className='contentLeft'>
-                        <img className='about-image' src={about1} alt='tomatos in a blow' />
+                        <img className='about-image' src={about1} alt='pomegranate tree' />
                     </article>
                     <article className='contentRight'>
                         <p className="curvy-text green-text">
@@ -107,8 +107,9 @@ export default function AboutPage() {
                         </article>
                     
                 </article>
-                
+                <article className='about-section-five'>
                 <Subscribe />
+                </article>
             </article>
             <Footer />
         </>

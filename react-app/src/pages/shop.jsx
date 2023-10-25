@@ -1,5 +1,4 @@
 import "../styles/shop.css"
-import axios from "axios";
 import { useEffect } from "react";
 import TitleImage from "../components/title-image"
 import titlebg from '../assets/shop-page-title-img.png';
