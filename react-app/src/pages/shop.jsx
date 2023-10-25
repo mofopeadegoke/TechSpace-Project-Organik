@@ -27,7 +27,7 @@ export default function ShopPage() {
     return (
         <>
             <Navbar />
-            <article className="shop-page-main">
+            <article className="shop-page-main" id="home">
                 <TitleImage text='Shop Product' imageUrl={titlebg} />
                 <form className="search-container" method="POST">
                     <img src={darkSearchIcon} alt="A magnifying icon with dark brown outline" />
@@ -75,7 +75,7 @@ export default function ShopPage() {
                 </article>
                 <article className="section-two">
                     <div className="row">
-                        <h2>Popular Categories</h2>
+                        <h2>Popular Products</h2>
                         <p className="green-text">View All <img src={rightArrow} alt="A green arrow pointing to the right" /></p>
                     </div>
                     <article className="products-container">

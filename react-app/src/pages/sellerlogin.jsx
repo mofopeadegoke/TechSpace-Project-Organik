@@ -26,7 +26,7 @@ export default function LogIn() {
     e.preventDefault();
     
     try {
-      const response = await axios.post('http://127.0.0.1:5000/login', formData);
+      const response = await axios.post('http://127.0.0.1:5000//seller/login', formData);
       console.log('Response from Flask:', response.data);
       setFormData({ email: '', password: '' });
       setError('');
