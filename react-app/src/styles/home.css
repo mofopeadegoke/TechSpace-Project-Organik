@@ -207,5 +207,6 @@ button {
     }
     article.homePage-main .section-one .content h1 {
         font-size: 1.5rem;
+        width: 10rem;
     }
 }
