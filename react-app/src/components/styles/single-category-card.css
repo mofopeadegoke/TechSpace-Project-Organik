@@ -1,0 +1,22 @@
+article.single-category-card {
+    padding: 1.5rem 2rem;
+    padding-top: 1rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 5px;
+    border: 1px solid #C0B6B6;
+    background: var(--gray-scale-white, #FFF);
+    color: var(--gray-scale-gray-900, #1A1A1A);
+}
+article.single-category-card img {
+    width: 10rem;
+}
+
+@media all and (max-width: 900px) {
+    article.single-category-card {
+        padding: 0.75rem 1rem;
+        padding-top: 0.5rem;
+    }
+}

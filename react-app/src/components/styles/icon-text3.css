@@ -1,0 +1,32 @@
+.image-title-subtext {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    border-radius: 1.875rem;
+    width: 16.0625rem;
+    height: 20.9375rem;
+    background: #FFF;
+  }
+  
+  .image-container img {
+    max-width: 100%;
+    border-radius: 1.125rem;
+    background: #F9F8F8;
+    padding: 1.3rem;
+  }
+  
+  .image-title-subtext .title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .image-title-subtext  .subtext {
+    margin: 0;
+    font-size: 1rem;
+    width: 11rem;
+
+  }
+  

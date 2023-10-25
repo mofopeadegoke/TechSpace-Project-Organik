@@ -1,0 +1,31 @@
+:root {
+    --primary-green: #00B207;
+}
+button.primary-btn {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 10px;
+    padding: 1.5rem 2rem;
+    font-size: 20px;
+    color: #FFF;
+    border-radius: 16px;
+    background: var(--primary-green, #00B207);
+    border: none;
+}
+button.primary-btn img {
+    margin-left: 0.3rem;
+    width: 1rem;
+}
+
+@media screen and (max-width: 700px) {
+    button.primary-btn {
+        column-gap: 7px;
+        padding: 1rem 1.5rem;
+        font-size: 16px;
+    }
+    button.primary-btn img {
+        margin-left: 0.2rem;
+        width: 0.8rem;
+    }
+}

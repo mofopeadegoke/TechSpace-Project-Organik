@@ -1,0 +1,107 @@
+.seller-signup {
+    background-image: url("../assets/home-section-two-cardImg-two.jpg");
+    background-size: cover;
+    background-position: center;
+    background-color: black;
+    padding: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 1000px;
+}
+
+.seller-signup a {
+    color: var(--title-color);
+    font-weight: 600;
+}
+
+.seller-signup-container {
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(0.2rem);
+    border-radius: 0.75rem;
+    padding: 0.3rem 2rem;
+    height: 1000px;
+}
+
+.seller-signup .header-text,
+.sub-text {
+    color: #333;
+}
+
+.seller-signup .header-text{
+    font-size: 3rem;
+}
+
+.seller-signup .sign-up-header {
+    font-size: 1rem;
+}
+
+.seller-signup .sub-text {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+
+.seller-signup .input-field {
+    height: 3rem;
+    box-sizing: border-box;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(102, 102, 102, 0.35);
+    width: 100%;
+    padding: 1rem;
+    font-size: 0.8rem;
+}
+
+.textfield {
+    display: flex;
+    width: 33.375rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+}
+
+.forgot-password {
+    margin-left: 1rem;
+}
+
+
+
+
+@media screen and (max-width: 768px) {
+    .seller-signup {
+        padding: 2rem;
+    }
+
+    .seller-signup .header-text {
+        font-size: 2rem;
+    }
+
+    .textfield {
+        width: 100%;
+    }
+
+    
+}
+
+@media screen and (max-width: 480px) {
+    .seller-signup {
+        padding: 1rem;
+    }
+
+    .seller-signup-container {
+        padding: 1rem;
+    }
+
+    .seller-signup .header-text {
+        font-size: 1.5rem;
+    }
+    
+}
+
+@media screen and (max-width: 380px) {
+    .seller-signup a,
+    .seller-signup .sub-text {
+        font-size: 0.7rem;
+    }
+}

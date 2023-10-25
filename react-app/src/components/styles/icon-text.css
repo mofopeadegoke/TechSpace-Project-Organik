@@ -1,0 +1,19 @@
+.icon-text {
+    display: flex;
+    align-items: center;
+    width: 282px;
+  }
+  
+  .icon {
+    width: 53px;
+    height: 53px;
+    margin-right: 10px;
+  }
+  
+  .icon-on-text {
+    color: var(--title-color);
+    width: 12.5rem;
+    font-family: 'roboto', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+  }
