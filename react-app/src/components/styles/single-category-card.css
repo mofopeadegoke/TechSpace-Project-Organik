@@ -8,6 +8,7 @@ article.single-category-card {
     border-radius: 5px;
     border: 1px solid #C0B6B6;
     background: var(--gray-scale-white, #FFF);
+    color: var(--gray-scale-gray-900, #1A1A1A);
 }
 article.single-category-card img {
     width: 10rem;

@@ -4,10 +4,12 @@ export default function SingleProduct(props) {
     return (
         <>
             <article className="single-product" id={props.uniqueId}>
-                <article className="category">
-                    {props.category}
-                </article>
-                <img src={props.imgUrl} alt={props.altText} className="product-img" />
+                <a href="/singleProduct">
+                    <article className="category">
+                        {props.category}
+                    </article>
+                    <img src={props.imgUrl} alt={props.altText} className="product-img" />
+                </a>
                 <article className="footer">
                     <p className="product-name">{props.name}</p>
                     <article className="product-details">
