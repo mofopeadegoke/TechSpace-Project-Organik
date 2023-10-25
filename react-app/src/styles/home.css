@@ -13,7 +13,7 @@ button {
 }
 .homePage-main .section-one {
     height: 40rem;
-    background-image: url("../assets/home-background-one.jpg");
+    background-image: url("../assets/homebg.png");
     background-size: cover;
     background-position: center center;
 }
@@ -52,16 +52,16 @@ button {
     border-radius: 20px;
 }
 .homePage-main article.img-card.one {
-    background-image: url("../assets/home-section-two-cardImg-one.jpg");
+    background-image: url("../assets/home1.png");
 }
 .homePage-main article.img-card.two {
-    background-image: url("../assets/home-section-two-cardImg-two.jpg");
+    background-image: url("../assets/home2.png");
 }
 .homePage-main article.img-card.two h2 {
-    color: var(--secondary-blue);
+    color: #fff;
 }
 .homePage-main article.img-card.two p {
-    color: #7EB693;
+    color: #fff;
 }
 .homePage-main article.section-two {
     padding: 8rem;
