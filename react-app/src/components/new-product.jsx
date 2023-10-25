@@ -20,14 +20,6 @@ export default function NewProduct() {
     });
   };
 
-  const handleImageChange = (e) => {
-    const imageFile = e.target.files[0];
-    setProductData({
-      ...productData,
-      image: imageFile,
-    });
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -52,7 +44,7 @@ export default function NewProduct() {
     <article className='new-product'>
       <h2 className='new-title'>New Product</h2>
       <form className='new-form' onSubmit={handleSubmit}>
-        <div className='flex-container'>
+        <article className='flex-container'>
           <label className='label-leftside' htmlFor="productName">Product Name</label>
           <input className='input-rigthside'
             type="text"
@@ -61,18 +53,8 @@ export default function NewProduct() {
             value={productData.productName}
             onChange={handleInputChange}
           />
-        </div>
-        <div className='flex-container'>
-          <label className='label-leftside' htmlFor="productId">Product ID</label>
-          <input className='input-rigthside'
-            type="text"
-            id="productId"
-            name="productId"
-            value={productData.productId}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className='flex-container'>
+        </article>
+        <article className='flex-container'>
           <label className='label-leftside' htmlFor="category">Category</label>
           <select className='select-button'
             id="category"
@@ -90,8 +72,8 @@ export default function NewProduct() {
             <option value="Category 7">Oil</option>
             <option value="Category 8">Grains</option>
           </select>
-        </div>
-        <div className='flex-container'>
+        </article>
+        <article className='flex-container'>
           <label className='label-leftside' htmlFor="price">Price</label>
           <input className='input-rigthside'
             type="text"
@@ -100,8 +82,8 @@ export default function NewProduct() {
             value={productData.price}
             onChange={handleInputChange}
           />
-        </div>
-        <div className='flex-container'>
+        </article>
+        <article className='flex-container'>
           <label className='label-leftside' htmlFor="quantity">Quantity</label>
           <input className='input-rigthside'
             type="text"
@@ -110,8 +92,8 @@ export default function NewProduct() {
             value={productData.quantity}
             onChange={handleInputChange}
           />
-        </div>
-        <div className='flex-container'>
+        </article>
+        <article className='flex-container'>
           <label className='label-leftside' htmlFor="new-product-description">Description</label>
           <textarea
           className='diss-pad'
@@ -120,7 +102,7 @@ export default function NewProduct() {
             value={productData.description}
             onChange={handleInputChange}
           />
-          </div>
+          </article>
         <button className='add-product-btn' type="submit">Add Product</button>
       </form>
     </article>
