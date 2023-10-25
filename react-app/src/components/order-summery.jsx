@@ -9,13 +9,13 @@ export default function OrderSummary() {
                 <article className="order-summary-header">
                     <h2 className="header-title">Order Summary</h2>
                     <article className="order-summary-items">
-                        <ProductCard image={bellpepper} itemName="Product Name" quantity={3} price={19.99} />
+                        <ProductCard image={bellpepper} itemName="Product Name" quantity={2} price={19.99} />
                         <ProductCard image={bellpepper} itemName="Product Name" quantity={3} price={19.99} />
                     </article>
 
                     <article className="total-section">
                         <p className="order-text">Subtotal:</p>
-                        <p className="total-price">$84.00</p>
+                        <p className="total-price">$100.00</p>
                     </article>
                     <hr className='h-line' />
                     <article className="total-section">
@@ -25,7 +25,7 @@ export default function OrderSummary() {
                     <hr className='h-line' />
                     <article className="total-section">
                         <p className="order-text">Total</p>
-                        <p className="total-price big-bold">$1,000</p>
+                        <p className="total-price big-bold">$100</p>
                     </article>
                 </article>
             </article>

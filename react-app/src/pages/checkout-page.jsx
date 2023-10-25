@@ -192,7 +192,9 @@ export default function CheckoutPage() {
 
       <article className="order-summary-section">
         <OrderSummary />
-        <button className='place-order-btn' type="submit">Place Order</button>
+        <a href="https://paystack.com/pay/organick">
+          <button className='place-order-btn' type="submit">Place Order</button>
+        </a>
       </article>
     </article>
     </>

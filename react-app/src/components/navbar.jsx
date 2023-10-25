@@ -64,10 +64,12 @@ export default function Navbar() {
               </a>
             </li> */}
             <li className="sm-hide1">
-              <div className="cart-container">
-                <img src={CartIcon} alt="A white shopping cart icon with a green background" />
-                <span>Cart(0)</span>
-              </div>
+              <a href="/shoppingCart">
+                <div className="cart-container">
+                  <img src={CartIcon} alt="A white shopping cart icon with a green background" />
+                  <span>Cart(0)</span>
+                </div>
+              </a>
             </li>
             <li className="sm-hide1">
               <a href="/logIn">
@@ -109,10 +111,12 @@ export default function Navbar() {
               </a>
             </li> */}
             <li className="sm-hide">
-              <div className="sm-show cart-container">
-                <img src={CartIcon} alt="A white shopping cart icon with a green background" />
-                <span>Cart(0)</span>
-              </div>
+              <a href="/shoppingCart">
+                <div className="sm-show cart-container">
+                  <img src={CartIcon} alt="A white shopping cart icon with a green background" />
+                  <span>Cart(0)</span>
+                </div>
+              </a>
             </li>
             <li className="sm-show sm-hide btn">
               <a href="/logIn">
