@@ -10,7 +10,8 @@ import TitleImg from "../assets/single-category-title-img.png";
 import SingleProduct from "../components/single-product";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
-
+import { useEffect, useState } from "react";
+import Loader from "../components/loader";
 export default function SingleCategory() {
     return (
         <>

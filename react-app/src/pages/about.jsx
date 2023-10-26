@@ -19,10 +19,20 @@ import IconText2 from '../components/icontext2';
 import IconText3 from '../components/icontext3';
 import Subscribe from '../components/subscribe';
 import ProfileCard from '../components/profile-card';
-
+import { useEffect, useState } from "react";
+import Loader from "../components/loader";
 export default function AboutPage() {
+    const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading data
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  }, []);
     return (
         <>
+        {isLoading ? <Loader /> : <article className="all">
             <Navbar />
             <article className='aboutPage-main'>
                 <TitleImage text='About Us' imageUrl={titlebg} />
@@ -112,6 +122,8 @@ export default function AboutPage() {
                 </article>
             </article>
             <Footer />
+        </article>}
+        
         </>
     )
 }

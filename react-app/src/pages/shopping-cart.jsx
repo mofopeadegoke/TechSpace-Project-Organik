@@ -6,6 +6,8 @@ import titlebg from '../assets/aboutbg.png';
 import greenPepperImg from "../assets/green-pepper.png";
 import redPepperImg from "../assets/red-pepper.png";
 import "../styles/shopping-cart.css";
+import { useEffect, useState } from "react";
+import Loader from "../components/loader";
 export default function ShoppingCartPage() {
     let [count1, setCount1] = useState(0);
     let [count2, setCount2] = useState(0);

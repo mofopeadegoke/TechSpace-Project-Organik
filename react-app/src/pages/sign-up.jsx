@@ -4,7 +4,8 @@ import PrimaryColoredBtn from '../components/primary-colored-btn';
 import { useNavigate } from 'react-router-dom';
 import Notification from '../components/notification';
 import '../styles/sign-up.css';
-
+import { useEffect, useState } from "react";
+import Loader from "../components/loader";
 export default function SignUp() {
     const [formData, setFormData] = useState({
         fullname: '',

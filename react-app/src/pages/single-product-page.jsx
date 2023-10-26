@@ -12,7 +12,8 @@ import SingleProduct from '../components/single-product';
 import Subscribe from '../components/subscribe';
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
-
+import { useEffect, useState } from "react";
+import Loader from "../components/loader";
 export default function SingleProductPage() {
     return (
         <>
