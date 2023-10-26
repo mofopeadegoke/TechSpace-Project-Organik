@@ -143,11 +143,10 @@ button {
 }
 .homePage-main article.section-four article.products {
     display: flex;
-    flex-direction: row;
+    flex-flow: row nowrap;
     justify-content: space-between;
     flex-wrap: wrap;
-    justify-content: center;
-    row-gap: 1rem;
+    
 }
 
 .homePage-main article.section-five {

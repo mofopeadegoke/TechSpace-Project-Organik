@@ -5,7 +5,8 @@ import axios from "axios";
 import PrimaryColoredBtn from '../components/primary-colored-btn';
 import '../styles/login.css';
 import Notification from '../components/notification'; 
-
+import { useEffect, useState } from "react";
+import Loader from "../components/loader";
 export default function LogIn() {
   const [formData, setFormData] = useState({
     email: '',
@@ -54,9 +55,18 @@ export default function LogIn() {
     }
 
   }, [successMessage, error]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading data
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  }, []);
 
   return (
     <>
+    {isLoading ? <Loader /> : <article className="all">
       <article className='login'>
       {successMessage && (
             <Notification message={successMessage} onClose={() => setSuccessMessage('')} />
@@ -104,6 +114,8 @@ export default function LogIn() {
           </form>
         </article>
       </article>
+    </article>}
+    
     </>
   );
 }

@@ -13,9 +13,20 @@ import Subscribe from "../components/subscribe";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import Loader from "../components/loader";
 export default function HomePage() {
+    const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading data
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  }, []);
     return (
         <>
+        {isLoading ? <Loader /> : <article className="all">
             <Navbar />
             <article className="homePage-main">
                 <article className="section-one">
@@ -95,7 +106,7 @@ export default function HomePage() {
                         <SingleProduct category="Vegetable" imgUrl={brocolliImg} altText="An image of brocolli" price="$11.00" name="Mung Bean" id="id1"/>
                         <SingleProduct category="Vegetable" imgUrl={cucumberImg} altText="An image of a green hazelnut" price="$12.00" name="Brown Hazelnut" id="id2"/>
                         <SingleProduct category="Vegetable" imgUrl={onionImg} altText="An image of onions" price="$17.00" name="Onion" id="id3"/>
-                        <SingleProduct category="Vegetable" imgUrl={cutOnionImg} altText="An image of cut open cabbage" price="$17.00" name="Caggage" id="id4"/>
+                        {/* <SingleProduct category="Vegetable" imgUrl={cutOnionImg} altText="An image of cut open cabbage" price="$17.00" name="Caggage" id="id4"/> */}
                     </article>
                 </article>
                 <article className="section-five">
@@ -103,6 +114,8 @@ export default function HomePage() {
                 </article>
             </article>
             <Footer />
+        </article>}
+        
         </>
     )
 }

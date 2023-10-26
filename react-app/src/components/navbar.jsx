@@ -39,7 +39,7 @@ export default function Navbar() {
               </span>
             </a>
           </li>
-          <div className={`nav-left ${menuOpen ? "show" : ""}`}>
+          <ul className={`nav-left ${menuOpen ? "show" : ""}`}>
             <li className="hide-me">
               <a href="/home">
                 Home
@@ -78,7 +78,7 @@ export default function Navbar() {
                 </button>
               </a>
             </li>
-          </div>
+          </ul>
         </ul>
         <div
           className={`menu-overlay ${menuOpen ? "open" : ""}`}
