@@ -6,7 +6,6 @@ import PrimaryColoredBtn from '../components/primary-colored-btn';
 import '../styles/login.css';
 import Notification from '../components/notification'; // Make sure to import the Notification component
 import IdComponent from "../components/id";
-import { useEffect, useState } from "react";
 import Loader from "../components/loader"
 export default function LogIn() {
   const [formData, setFormData] = useState({

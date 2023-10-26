@@ -4,8 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import PrimaryColoredBtn from '../components/primary-colored-btn';
 import '../styles/login.css';
-import Notification from '../components/notification'; 
-import { useEffect, useState } from "react";
+import Notification from '../components/notification';
 import Loader from "../components/loader";
 export default function LogIn() {
   const [formData, setFormData] = useState({

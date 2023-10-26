@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import axios from 'axios';
 import PrimaryColoredBtn from '../components/primary-colored-btn';
 import { useNavigate } from 'react-router-dom';

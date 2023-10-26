@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import axios from 'axios';
 import '../styles/checkout-page.css';
 import Navbar from '../components/navbar';
