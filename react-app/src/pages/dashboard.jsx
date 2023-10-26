@@ -4,7 +4,7 @@ import Navbar from '../components/navbar';
 import NewProduct from '../components/new-product';
 import { useEffect, useState } from "react";
 import Loader from "../components/loader";
-export default function dashboard() {
+export default function Dashboard() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
