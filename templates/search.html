@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Page</title>
+</head>
+<body>
+    <h1>Search Page</h1>
+    <form id="searchForm">
+        <label for="searchValue">Search:</label>
+        <input type="text" id="searchValue" name="searchValue">
+        <button type="submit">Search</button>
+    </form>
+    <div id="searchResults"></div>
+
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const searchValue = document.getElementById('searchValue').value;
+            fetch('/item_search', {
+                method: 'POST',
+                body: new URLSearchParams({ 'search_value': searchValue }),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                const searchResults = document.getElementById('searchResults');
+                searchResults.innerHTML = JSON.stringify(data, null, 2);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
