@@ -1,6 +1,6 @@
 import "../styles/shop.css";
 import axios from 'axios';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import TitleImage from "../components/title-image"
 import titlebg from '../assets/shop-page-title-img.png';
 import darkSearchIcon from "../assets/dark-search-icon.png";
@@ -28,21 +28,42 @@ import Footer from "../components/footer";
 import { useEffect, useState } from "react";
 import Loader from "../components/loader";
 export default function ShopPage() {
-    useEffect(() => {
-        async function handleRequest() {
-            const response = await axios.get('http://127.0.0.1:5000/show_all_products');
-            console.log(response)
+    // useEffect(() => {
+    //     async function handleRequest() {
+    //         const response = await axios.get('http://127.0.0.1:5000/show_all_products');
+    //         console.log(response)
+    //     }
+    // }, [])
+
+    const [formData, setFormData] = useState({
+        product: ''
+      });
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post('http://127.0.0.1:5000/search', formData);
+            console.log('Response from Flask:', response.data);
+            setFormData({product: ''});
+        } catch (error) {
+          console.error('Error:', error);          
         }
-    }, [])
+      };
     return (
         <>
             <Navbar />
             <article className="shop-page-main" id="home">
                 <TitleImage text='Shop Product' imageUrl={titlebg} />
-                <form className="search-container" method="POST">
-                    <img src={darkSearchIcon} alt="A magnifying icon with dark brown outline" />
-                    <input type="text"/>
+                <form className="search-container" onSubmit={handleSubmit}>
+                    {/* <img src={darkSearchIcon} alt="A magnifying icon with dark brown outline" /> */}
+                    <input type="text" name="product" value={formData.email} onChange={handleInputChange}/>
                     <span>Search...</span>
+                    <button type="submit">Search</button>
                 </form>
                 <article className="features-container">
                     <article className="feature">

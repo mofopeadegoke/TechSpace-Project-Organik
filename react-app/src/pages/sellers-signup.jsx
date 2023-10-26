@@ -58,7 +58,7 @@ export default function SellerSignUp() {
             setSuccess('Sign up Successful! Redirecting to home! UWU:)');
             setTimeout(() => {
                 setSuccess('');
-                navigate('/dashboard');
+                navigate('/auth');
             }, 3000);
 
         } catch (error) {

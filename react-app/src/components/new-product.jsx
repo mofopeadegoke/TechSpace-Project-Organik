@@ -13,7 +13,8 @@ export default function NewProduct() {
   });
   const [successMessage, setSuccessMessage] = useState('');
   const [error, setError] = useState('');
-
+  const user_id = localStorage.getItem('SellersId');
+  console.log(user_id);
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setProductData({
@@ -55,11 +56,13 @@ export default function NewProduct() {
       return () => clearTimeout(timeoutId);
     }
   }, [successMessage, error]);
-
+  useEffect(() => {
+    document.querySelector('.idInput').click();
+  }, [])
   return (
     <article className='new-product'>
       <h2 className='new-title'>New Product</h2>
-      <form className='new-form' onSubmit={handleSubmit}>
+      <form className='new-form' onSubmit={handleSubmit} method='POST'>
         <article className='flex-container'>
           <label className='label-leftside' htmlFor="productName">Product Name</label>
           <input className='input-rigthside'
@@ -129,6 +132,13 @@ export default function NewProduct() {
             required
           />
           </article>
+          <input 
+            type='hidden'
+            name="user"
+            className='idInput'
+            value={user_id}
+            onClick={handleInputChange}
+          />
         <button className='add-product-btn' type="submit">Add Product</button>
       </form>
     </article>
