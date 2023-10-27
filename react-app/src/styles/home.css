@@ -115,6 +115,11 @@ button {
 .homePage-main article.section-three .content button.primary-btn {
     margin-top: 1rem;
 }
+.primary-btn:hover{
+    background-color: #EFD372;
+    color: #274C5B;
+    transition: all 0.5s ease-in-out;
+}
 .homePage-main article.section-four {
     background: #274C5B;
     padding: 10rem 7rem;

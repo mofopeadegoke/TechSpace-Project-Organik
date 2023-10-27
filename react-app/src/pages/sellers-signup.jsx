@@ -170,9 +170,9 @@ export default function SellerSignUp() {
                         </label>
                         {error && <article className="error-message">{error}</article>}
                         <br />
-                        <p className='sub-text'>By creating an account, I agree to our <a href='/home'>Terms of use</a> and <a href='/home'>Terms of use</a></p>
+                        <p className='sub-text'>By creating an account, I agree to our <a href='/home'>Terms and Conditions</a></p>
                         {/* <PrimaryColoredBtn type="submit" value='Sign up' /> */}
-                        <button type='submit'>
+                        <button className='primary-btn' type='submit'>
                             Sign in
                         </button>
                     </form>
