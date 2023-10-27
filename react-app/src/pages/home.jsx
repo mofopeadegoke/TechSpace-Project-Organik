@@ -13,9 +13,20 @@ import Subscribe from "../components/subscribe";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import Loader from "../components/loader";
 export default function HomePage() {
+    const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading data
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 7000);
+  }, []);
     return (
         <>
+        {isLoading ? <Loader /> : <article className="all">
             <Navbar />
             <article className="homePage-main">
                 <article className="section-one">
@@ -103,6 +114,8 @@ export default function HomePage() {
                 </article>
             </article>
             <Footer />
+        </article>}
+        
         </>
     )
 }
