@@ -12,10 +12,20 @@ import SingleProduct from '../components/single-product';
 import Subscribe from '../components/subscribe';
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
-
+import { useEffect, useState } from "react";
+import Loader from "../components/loader";
 export default function SingleProductPage() {
+    const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading data
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 7000);
+  }, []);
     return (
         <>
+        {isLoading ? <Loader /> : <article className="all">
             <Navbar />
             <article className="single-product-page">
                 <TitleImage text='Single Product' imageUrl={titlebg} />
@@ -50,6 +60,8 @@ export default function SingleProductPage() {
                 </article>
             </article>
             <Footer />
+        </article>}
+        
         </>
     )
 }

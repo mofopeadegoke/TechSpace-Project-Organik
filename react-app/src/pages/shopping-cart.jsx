@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import Navbar from "../components/navbar";
 import TitleImage from "../components/title-image";
 import Footer from "../components/footer";
@@ -6,6 +5,8 @@ import titlebg from '../assets/aboutbg.png';
 import greenPepperImg from "../assets/green-pepper.png";
 import redPepperImg from "../assets/red-pepper.png";
 import "../styles/shopping-cart.css";
+import { useEffect, useState } from "react";
+import Loader from "../components/loader";
 export default function ShoppingCartPage() {
     let [count1, setCount1] = useState(0);
     let [count2, setCount2] = useState(0);
@@ -35,8 +36,17 @@ export default function ShoppingCartPage() {
         setCount1(0);
         setCount2(0);
     }
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        // Simulate loading data
+        setTimeout(() => {
+        setIsLoading(false);
+        }, 7000);
+    }, []);
     return (
         <>
+        {isLoading ? <Loader /> : <article className="all">
             <Navbar />
             <TitleImage text='Shopping Cart' imageUrl={titlebg} />
             <article className="shopping-cart-main">
@@ -129,6 +139,8 @@ export default function ShoppingCartPage() {
                 </article>
             </article>
             <Footer />
+        </article>}
+        
         </>
     )
 }

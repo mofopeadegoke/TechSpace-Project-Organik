@@ -211,6 +211,15 @@ item_db_info = {
     "password": os.getenv("PASSWORD"),
 }
 
+# product_db_info = {
+#     "host": os.getenv("DB_HOST"),
+#     "bucket": os.getenv("BUCKET"),
+#     "scope": os.getenv("SCOPE_CART"),
+#     "collection": os.getenv("COLLECTION_PRODUCT_ITEM"),
+#     "username": os.getenv("USER"),
+#     "password": os.getenv("PASSWORD"),
+# }
+print(*seller_db_info.values())
 cb = CouchbaseClient(*client_db_info.values())
 cb.connect()
 cb.create_index()

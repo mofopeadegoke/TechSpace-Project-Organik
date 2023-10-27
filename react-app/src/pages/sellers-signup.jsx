@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
 import axios from 'axios';
 import PrimaryColoredBtn from '../components/primary-colored-btn';
 import { useNavigate } from 'react-router-dom';
 import Notification from '../components/notification';
 import '../styles/seller-signup.css';
-
+import { useEffect, useState } from "react";
+import Loader from "../components/loader";
 export default function SellerSignUp() {
     const [formData, setFormData] = useState({
         fullname: '',
@@ -57,7 +57,7 @@ export default function SellerSignUp() {
             setSuccess('Sign up Successful! Redirecting to home! UWU:)');
             setTimeout(() => {
                 setSuccess('');
-                navigate('/dashboard');
+                navigate('/auth');
             }, 3000);
 
         } catch (error) {
@@ -70,9 +70,17 @@ export default function SellerSignUp() {
             }
         }
     };
+    const [isLoading, setIsLoading] = useState(true);
 
+  useEffect(() => {
+    // Simulate loading data
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 7000);
+  }, []);
     return (
         <>
+        {isLoading ? <Loader /> : <article className="all">
             <article className='seller-signup'>
                 <article className='seller-signup-container'>
                     <h1 className='header-text'>Seller Sign-up</h1>
@@ -175,6 +183,8 @@ export default function SellerSignUp() {
                 </article>
                 {success && (<Notification message={success} onClose={() => setSuccess('')} />)}
             </article>
+        </article>}
+        
         </>
     );
 }
