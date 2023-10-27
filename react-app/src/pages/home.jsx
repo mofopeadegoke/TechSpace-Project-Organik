@@ -32,18 +32,18 @@ export default function HomePage() {
                 <article className="section-two">
                     <article className="img-card one">
                         <article className="content">
-                            <p className="curvy-text white-text">
+                            <p className="curvy-text white-text sm-text-p">
                                 Natural!!
                             </p>
-                            <h2>Get Garden Fresh Fruits</h2>
+                            <h2 className="sm-text-home">Get Garden Fresh Fruits</h2>
                         </article>
                     </article>
                     <article className="img-card two">
                         <article className="content">
-                            <p className="curvy-text white-text">
+                            <p className="curvy-text white-text sm-text-p">
                                 Offer!!
                             </p>
-                            <h2>Get 10% off on Vegetables</h2>
+                            <h2 className="sm-text-home">Get 10% off on Vegetables</h2>
                         </article>
                     </article>
                 </article>

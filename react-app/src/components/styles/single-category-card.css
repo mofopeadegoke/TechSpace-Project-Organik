@@ -20,3 +20,9 @@ article.single-category-card img {
         padding-top: 0.5rem;
     }
 }
+
+@media all and (max-width: 610px) {
+    article.single-product article.footer .product-price {
+        margin-right: 1rem;
+    }
+}
