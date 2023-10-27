@@ -2,6 +2,7 @@ import os
 import uuid
 import json
 import datetime
+import random
 from datetime import timedelta
 from multiprocessing import Process
 from couchbase.auth import PasswordAuthenticator
@@ -31,6 +32,7 @@ class CouchbaseClient:
         self.collection_name = collection
         self.username = username
         self.password = password
+        print("Initializing Couchbase")
 
     def connect(self, **kwargs):
         conn_str = self.host
@@ -115,6 +117,17 @@ class CouchbaseClient:
             except CouchbaseException as e:
                 print("User not found")
 
+    def get_product_from_search(self, search_name):
+            try:
+                n1ql_query = f"""
+                                SELECT * FROM `{self.bucket_name}`.{self.scope_name}.{self.collection_name}
+                                WHERE product_name = "{search_name}";
+                                """
+                result = self._cluster.query(n1ql_query).execute()
+                return result
+            except CouchbaseException as e:
+                print("Product not found")
+
     def get_all_products(self):
             try:
                 n1ql_query = f"""
@@ -198,20 +211,9 @@ item_db_info = {
     "password": os.getenv("PASSWORD"),
 }
 
-product_db_info = {
-    "host": os.getenv("DB_HOST"),
-    "bucket": os.getenv("BUCKET"),
-    "scope": os.getenv("SCOPE_CART"),
-    "collection": os.getenv("COLLECTION_PRODUCT_ITEM"),
-    "username": os.getenv("USER"),
-    "password": os.getenv("PASSWORD"),
-}
-
 cb = CouchbaseClient(*client_db_info.values())
 cb.connect()
 cb.create_index()
-
-
 class User(UserMixin):
     def __init__(self, id):
         self.id = id
@@ -302,35 +304,49 @@ def seller_signup():
 
 @app.route('/seller/login', methods=['POST'])
 def seller_login():
-        form_data = request.json
-        form_email = form_data.get('email')
-        form_password = form_data.get('password')
-        print(form_email, form_password)
-        cb = CouchbaseClient(*seller_db_info.values())
-        cb.connect()
-        result = cb.find_document_email(form_email)
-        if result:
-            db_password = result[0]['sellers']['password']
-            if bcrypt.check_password_hash(db_password, form_password):
-                id = result[0]['sellers']['id']
-                user = User(id)
-                login_user(user)
-                user_id = current_user.get_id()
-                data = {"message": user_id}
-                return jsonify(data)
-                # response_data = f"{user_id}"
-                # return response_data
-            else:
-                response_data = f"Wrong username or password"
-                return jsonify(response_data)
-        else:
-            response_data = f"Couldn't find the email '{form_email}'"
-            return jsonify(response_data)
+    form_data = request.json
+    form_email = form_data.get('email')
+    form_password = form_data.get('password')
+    cb = CouchbaseClient(*seller_db_info.values())
+    cb.connect()
+    result = cb.find_document_email(form_email)
+    if result == []:
+        response_data = f"Couldn't find the email '{form_email}'"
+        return jsonify(response_data)
+    db_password = result[0]['sellers']['password']
+    if bcrypt.check_password_hash(db_password, form_password):
+        id = result[0]['sellers']['id']
+        user = User(id)
+        login_user(user)
+        # user_data = {
+        #     "id": current_user.id,
+        # }
+        response_data = {
+            "user_id": current_user.id,
+            "message": "Login successful"
+        }
+        return jsonify(response_data)
+    else:
+        response_data = f"Wrong username or password"
+        return jsonify(response_data)
+
+            
     
-@app.route('/user')
-@login_required
+@app.route('/getuser')
 def get_user():
-    return jsonify({"username": current_user.id})
+    try:
+        user_data = {
+            "id": current_user.id,
+            "username": current_user.username,
+        }
+        print(user_data)
+        response_data = {
+            "user": user_data
+        }
+        return jsonify(response_data)
+    except Exception as e:
+        error_message = str(e)
+        return jsonify({'error': error_message}), 500
 
 
 @app.route('/flask-rendered-page')
@@ -366,11 +382,7 @@ def add_products():
     price = form_data.get('price')
     quantity = form_data.get('quantity')
     description = form_data.get('description')
-    user_info = current_user.get_id()
-    user_info = user_info.replace("'", "\"")
-    user_info_dict = json.loads(user_info)
-    print(user_info_dict)
-    seller_id = user_info_dict['clients']['id']
+    seller_id = form_data.get('user')
     id = str(uuid.uuid4())
     cb = CouchbaseClient(*item_db_info.values())
     cb.connect()
@@ -378,7 +390,7 @@ def add_products():
     if existing_data:
         new_quantity = quantity
         new_price = price
-        print(new_quantity)
+        rating = random.randint(1, 5)
         data = {
             "seller_id": seller_id,
             "category": category,
@@ -386,10 +398,12 @@ def add_products():
             "product_name": product_name,
             "quantity": new_quantity,
             "description": description,
-            "price": new_price
+            "price": new_price,
+            "rating": rating,
         }
         cb.upsert(data, seller_id + "::" + product_name)
     else:
+        rating = random.randint(1, 5)
         data = {
             "seller_id": seller_id,
             "category": category,
@@ -397,7 +411,8 @@ def add_products():
             "product_name": product_name,
             "quantity": quantity,
             "description": description,
-            "price": price
+            "price": price,
+            "rating": rating
         }
         cb.insert(seller_id + "::" + product_name, data)
     response_data = f"Successfully added item to database, UWU :)"
@@ -434,31 +449,22 @@ def logout():
     response_data = f"Sucessfully logged out user"
     return jsonify(response_data)
     
+@app.route('/search', methods=['POST'])
+def search():
+    form_data = request.json
+    search = form_data.get('product')
+    cb = CouchbaseClient(*item_db_info.values())
+    cb.connect()
+    products = cb.get_product_from_search(search)
+    print(products)
+    product_data = {
+        "name": products[0]['items']['product_name'],
+        "price": products[0]['items']['price'],
+        "category": products[0]['items']['category'],
+        "rating": products[0]['items']['rating']
+    }
+    return jsonify(product_data)
 
-
-@app.route('/dashboard')
-@login_required
-def dashboard():
-    if current_user.is_authenticated:
-        return "Welcome to the dashboard!"
-    else:
-        return "Access denied. Please log in."
     
 if __name__ == "__main__":
     app.run(debug=True)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

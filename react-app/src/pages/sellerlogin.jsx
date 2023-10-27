@@ -5,9 +5,9 @@ import axios from "axios";
 import PrimaryColoredBtn from '../components/primary-colored-btn';
 import '../styles/login.css';
 import Notification from '../components/notification'; // Make sure to import the Notification component
-
+import IdComponent from "../components/id";
+import Loader from "../components/loader"
 export default function LogIn() {
-  let id;
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -22,6 +22,7 @@ export default function LogIn() {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,29 +30,29 @@ export default function LogIn() {
     try {
       const response = await axios.post('http://127.0.0.1:5000/seller/login', formData);
       console.log('Response from Flask:', response.data);
-      id = response.data;
-      setFormData({ email: '', password: '' });
-      setError('');
-      setSuccessMessage('Login Successful ✅');
 
-      setTimeout(() => {
+      if (response.data.message === 'Login successful')  {
+        setFormData({ email: '', password: '' });
+        setError('');
+        setSuccessMessage(response.data.message);
+        setTimeout(() => {
+          setSuccessMessage('');
+          localStorage.setItem('SellersId', response.data.user_id);
+          navigate('/dashboard');
+        }, 3000);
+      } else {
+        setError('Invalid email or password. Please try again.');
         setSuccessMessage('');
-        navigate('/dashboard');
-      }, 3000);
+      }
       
     } catch (error) {
       console.error('Error:', error);
-      setError('Invalid email or password. Please try again.');
+      setError('An error occured. Please try again.');
       setSuccessMessage('');
+      
     }
-    axios.get('http://127.0.0.1:5000/seller/login').then(response => {
-        id = response.data;
-        console.log(id);
-    }).catch(error => {
-      console.log(error);
-    })
+
   };
-  console.log(id);
   useEffect(() => {
     if (successMessage || error) {
       const timeoutId = setTimeout(() => {
@@ -63,9 +64,17 @@ export default function LogIn() {
     }
 
   }, [successMessage, error]);
+  const [isLoading, setIsLoading] = useState(true);
 
+  useEffect(() => {
+    // Simulate loading data
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  }, []);
   return (
     <>
+    {isLoading ? <Loader /> : <article className="all">
       <article className='login'>
       {successMessage && (
             <Notification message={successMessage} onClose={() => setSuccessMessage('')} />
@@ -101,6 +110,7 @@ export default function LogIn() {
                 required
               />
             </label>
+            {/* <input type="hidden" name="userId" value={user_id} /> */}
             {error && <article className='error-message'>{error}</article>}
 
             <br />
@@ -111,6 +121,7 @@ export default function LogIn() {
           </form>
         </article>
       </article>
+    </article>}
     </>
   );
 }
