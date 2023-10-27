@@ -63,7 +63,7 @@ export default function SignUp() {
         // Simulate loading data
         setTimeout(() => {
         setIsLoading(false);
-        }, 7000);
+        }, 2000);
     }, []);
     return (
         <>

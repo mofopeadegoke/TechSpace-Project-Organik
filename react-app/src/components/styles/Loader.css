@@ -7,7 +7,8 @@
 
 :root {
     --hue: 223;
-    --bg: hsl(var(--hue), 90%, 95%);
+    /* --bg: hsl(var(--hue), 90%, 95%); */
+    --bg: rgba(0, 178, 7, 0.5);
     --fg: hsl(var(--hue), 90%, 5%);
     --trans-dur: 0.3s;
 }

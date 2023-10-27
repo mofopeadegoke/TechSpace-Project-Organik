@@ -70,7 +70,7 @@ export default function LogIn() {
     // Simulate loading data
     setTimeout(() => {
       setIsLoading(false);
-    }, 7000);
+    }, 2000);
   }, []);
   return (
     <>

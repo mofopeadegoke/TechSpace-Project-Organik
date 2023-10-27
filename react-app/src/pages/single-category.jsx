@@ -19,7 +19,7 @@ export default function SingleCategory() {
         // Simulate loading data
         setTimeout(() => {
         setIsLoading(false);
-        }, 7000);
+        }, 2000);
     }, []);
     return (
         <>
