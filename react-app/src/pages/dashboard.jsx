@@ -11,7 +11,7 @@ export default function Dashboard() {
     // Simulate loading data
     setTimeout(() => {
       setIsLoading(false);
-    }, 7000);
+    }, 2000);
   }, []);
   return (
     <>
