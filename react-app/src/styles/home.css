@@ -208,4 +208,37 @@ button {
         font-size: 1.5rem;
         width: 10rem;
     }
+    .homePage-main article.section-four article.products {
+        justify-content: center;
+    }
+}
+
+@media all and (max-width: 417px) {
+    .homePage-main article.section-four .row p.title-text {
+        font-size: 1rem;
+    }
+    .homePage-main article.section-four .row .primary-btn {
+        font-size: 0.7rem;
+        padding: 0.5rem 0.75rem;
+    }
+    .homePage-main article.section-four .curvy-text {
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+    .homePage-main article.section-five {
+        padding: 2rem;
+    }
+    article.homePage-main .section-one .content h1 {
+        font-size: 1.5rem;
+        width: 10rem;
+    }
+    .homePage-main article.section-four article.products {
+        justify-content: center;
+    }
+    .sm-text-home {
+        font-size: 0.8rem;
+    }
+    .img-card .curvy-text{
+        font-size: 1rem;
+    }
 }
