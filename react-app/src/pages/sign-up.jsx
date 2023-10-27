@@ -57,10 +57,17 @@ export default function SignUp() {
             }
         }
     };
+    const [isLoading, setIsLoading] = useState(true);
 
+    useEffect(() => {
+        // Simulate loading data
+        setTimeout(() => {
+        setIsLoading(false);
+        }, 7000);
+    }, []);
     return (
         <>
-            <article className='signup'>
+        {isLoading ? <Loader /> : <article className='signup'>
                 <article className='signup-container'>
                     <h1 className='header-text'>Sign up now</h1>
                     <form onSubmit={handleSubmit}>
@@ -113,7 +120,8 @@ export default function SignUp() {
                     <article className='bottom-section'><p className='bottom-text'>Already have an account?<a className='forgot-password' href='/logIn'>Log in</a></p><a href='/sellerSignup' className='sign-up-header'>Sign up as seller</a></article>
                 </article>
                 {success && (<Notification message={success} onClose={() => setSuccess('')} />)}
-            </article>
+            </article>}
+            
         </>
     );
 }

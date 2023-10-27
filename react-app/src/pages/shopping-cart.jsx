@@ -36,8 +36,17 @@ export default function ShoppingCartPage() {
         setCount1(0);
         setCount2(0);
     }
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        // Simulate loading data
+        setTimeout(() => {
+        setIsLoading(false);
+        }, 7000);
+    }, []);
     return (
         <>
+        {isLoading ? <Loader /> : <article className="all">
             <Navbar />
             <TitleImage text='Shopping Cart' imageUrl={titlebg} />
             <article className="shopping-cart-main">
@@ -130,6 +139,8 @@ export default function ShoppingCartPage() {
                 </article>
             </article>
             <Footer />
+        </article>}
+        
         </>
     )
 }

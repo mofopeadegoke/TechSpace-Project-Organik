@@ -74,7 +74,7 @@ export default function CheckoutPage() {
     // Simulate loading data
     setTimeout(() => {
       setIsLoading(false);
-    }, 2000);
+    }, 7000);
   }, []);
 
   return (

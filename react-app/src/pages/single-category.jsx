@@ -13,8 +13,17 @@ import Footer from "../components/footer";
 import { useEffect, useState } from "react";
 import Loader from "../components/loader";
 export default function SingleCategory() {
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        // Simulate loading data
+        setTimeout(() => {
+        setIsLoading(false);
+        }, 7000);
+    }, []);
     return (
         <>
+        {isLoading ? <Loader /> : <article className="all">
             <Navbar />
             <article className="singleCategoryMain">
                 <TitleImage imageUrl={TitleImg} text="Category Name"/>
@@ -39,6 +48,8 @@ export default function SingleCategory() {
                 </article>
             </article>
             <Footer />
+        </article>}
+        
         </>
     )
 }
