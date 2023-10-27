@@ -105,7 +105,9 @@ article.shopping-cart-main article.right-product-container button {
         flex-wrap: wrap;
     }
     article.shopping-cart-main {
-        width: 90%;
+        width: 100%;
+        margin-inline: auto;
+        padding-inline: 1rem;
         padding-block: 4rem;
     }
     article.shopping-cart-main article.right-product-container {
@@ -117,5 +119,6 @@ article.shopping-cart-main article.right-product-container button {
     }
     article.shopping-cart-main article.left-product-container>button {
         bottom: -3rem;
+        right: 1rem;
     }
 }

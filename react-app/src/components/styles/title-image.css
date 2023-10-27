@@ -20,5 +20,6 @@
   font-family: 'Roboto';
   font-weight: 800;
   color: var(--title-color);
+  text-shadow: 2px 6px 1px rgba(255, 255, 255, 0.7);
 }
   
